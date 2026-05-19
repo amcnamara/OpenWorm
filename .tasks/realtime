@@ -733,7 +733,7 @@ The realtime model should be calibrated in layers.
 - [x] Map 96 muscle channels onto reduced body segments.
 - [x] Preserve dorsal/ventral and left/right grouping.
 - [ ] Fit per-muscle gain and delay only if reference data proves they are needed.
-- [ ] Keep default gains interpretable and documented.
+- [x] Keep default gains interpretable and documented.
 
 ### Layer 2 - Passive Body Parameters
 
@@ -1030,6 +1030,7 @@ Required reported metrics:
 - [x] Add a dependency-free parser and `ow-realtime inspect-body-debug-log` summary for `body_debug_log.txt` calibration/debug telemetry.
 - [x] Add an uncalibrated ground-plane contact response that derives segment contact, clamps dorsal/ventral penetration, and feeds contact friction.
 - [x] Add canonical reduced-body parameter text, SHA-256 fingerprinting, manifest `body_model_parameter_hash`, and `ow-realtime inspect-body-parameters`.
+- [x] Add `ow-realtime inspect-body-calibration` to document the current interpretable gain policy: uniform per-muscle gain, zero per-muscle delay, global curvature gains, and reference-data-required future fitting.
 - [x] Write `body_parameters.txt` into realtime run directories so `body_model_parameter_hash` is auditable from emitted artifacts.
 - [x] Add an explicit `fluid_drag_per_s` reduced-body parameter and apply it as a separate auditable drag term during body stepping.
 - [x] Include reduced-body `segment_count` in the canonical parameter text and use it to construct realtime state and muscle attachments.
