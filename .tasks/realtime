@@ -874,7 +874,7 @@ Required reported metrics:
 ### Phase 0 - Define Realtime Contract
 
 - [x] Create an explicit `realtime` mode in docs and CLI separate from `exact` and `fast`.
-- [ ] Define what "uses the existing connectome data and simulator rules" means:
+- [x] Define what "uses the existing connectome data and simulator rules" means:
   - same raw connectome source.
   - same c302 FW/C2 transformation rules.
   - same 96 muscle activation convention.
@@ -914,6 +914,7 @@ Required reported metrics:
 - [x] Document the first source audit, architecture, and extracted c302/Sibernetic business logic in `./documentation`.
 - [x] Port the full FW/C2 parameter override, polarity override, connection-number override, and generated input-current inventory into a structured Rust neural-model IR.
 - [x] Add machine-readable realtime manifest schema definitions and tests before implementing `ow-realtime run`.
+- [x] Add machine-readable `compatibility_rules` to `ow-realtime inspect-output-contract` defining same-source connectome/c302/muscle conventions and behavior-level equivalence instead of particle-buffer identity.
 - [x] Add `ow-realtime inspect-validation-thresholds` to print the current behavior metric pass/fail tolerance budget from Rust constants.
 - [x] Add `ow-realtime run --mode realtime --output <dir>` as an explicitly unvalidated smoke-run command that writes the required realtime artifact set.
 - [x] Add a realtime `report.json` compatibility shape with `completed successfully`, `mode: realtime`, and `validation_status: not_run` fields for existing OpenWorm wrappers.
