@@ -885,7 +885,7 @@ Required reported metrics:
   - centerline/motion log.
   - WCON-compatible export.
   - rendered frames/video/stream.
-- [ ] Define pass/fail behavior metrics and tolerances before implementation.
+- [x] Define pass/fail behavior metrics and tolerances before implementation.
 
 #### Phase 0 Implementation Progress
 
@@ -895,6 +895,7 @@ Required reported metrics:
 - [x] Document the first source audit, architecture, and extracted c302/Sibernetic business logic in `./documentation`.
 - [x] Port the full FW/C2 parameter override, polarity override, connection-number override, and generated input-current inventory into a structured Rust neural-model IR.
 - [x] Add machine-readable realtime manifest schema definitions and tests before implementing `ow-realtime run`.
+- [x] Add `ow-realtime inspect-validation-thresholds` to print the current behavior metric pass/fail tolerance budget from Rust constants.
 - [x] Add `ow-realtime run --mode realtime --output <dir>` as an explicitly unvalidated smoke-run command that writes the required realtime artifact set.
 - [x] Add a realtime `report.json` compatibility shape with `completed successfully`, `mode: realtime`, and `validation_status: not_run` fields for existing OpenWorm wrappers.
 
