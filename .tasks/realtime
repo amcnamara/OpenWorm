@@ -985,6 +985,7 @@ Required reported metrics:
 - [x] Add an internal `william-body` Rust crate with a dependency-free 48-segment reduced body state and deterministic straight-state initializer.
 - [x] Add a default 96-channel muscle attachment map from generated legacy muscle outputs to dorsal/ventral, left/right, longitudinal slot, and reduced body segment ranges.
 - [x] Add `ow-realtime inspect-body-map` and `documentation/body-model.md` to audit the current reduced body topology and muscle attachments.
+- [x] Add per-segment muscle-drive accumulation from 96-channel activation frames into dorsal/ventral and left/right drive fields.
 
 ### Phase 4 - Residual/Surrogate Model
 
