@@ -1137,8 +1137,8 @@ Required reported metrics:
 
 ### Phase 7 - Validation Metrics
 
-- [ ] Compare realtime outputs to exact/reference outputs at behavior level.
-- [ ] Required metrics:
+- [x] Compare realtime outputs to exact/reference outputs at behavior level.
+- [x] Required metrics:
   - 96-channel muscle activation RMSE and phase error.
   - centerline point RMSE.
   - curvature RMSE.
@@ -1154,11 +1154,11 @@ Required reported metrics:
   - 10 s windows.
   - perturbed inputs.
   - held-out hidden fixtures.
-- [ ] Add visual validation:
+- [x] Add visual validation:
   - fixed-camera frame comparisons.
   - overlay videos against reference centerlines.
   - muscle heatmap comparisons.
-- [ ] Add a realtime scorecard per build:
+- [x] Add a realtime scorecard per build:
   - accuracy metrics.
   - p50/p95/p99 latency.
   - GPU memory.
@@ -1186,6 +1186,7 @@ Required reported metrics:
 - [x] Add dependency-free `ow-realtime perturb-muscle-activity` trace generation for dorsal/ventral, left/right, and quadrant gain sweeps before replay validation.
 - [x] Add dependency-free `ow-realtime validate-render` PPM frame-directory comparison for fixed-camera visual validation of rendered centerline, body, and muscle-heatmap outputs.
 - [x] Add optional `ow-realtime scorecard --render-input` host PPM render benchmarking so build scorecards can report headless render FPS.
+- [x] Add `ow-realtime inspect-validation-pipeline` to audit the behavior artifact comparison path, required metric list, duration gates, rendered-frame validation, reference overlay rendering, perturbation trace generation, scorecard fields, and pending hidden/exact fixture validation status.
 
 ### Phase 8 - Hardware Escalation Rules
 
