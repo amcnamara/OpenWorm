@@ -1071,6 +1071,7 @@ Required reported metrics:
 #### Phase 6 Implementation Progress
 
 - [x] Add `ow-realtime render --input <dir> --output <dir>` as a dependency-free headless scientific centerline renderer from `worm_motion_log.txt` to deterministic PPM frames.
+- [x] Add `--mode muscle-heatmap` headless rendering that colors centerline segments from matching `muscle_activity_buffer.txt` frames using the legacy 96-channel longitudinal slots.
 
 ### Phase 7 - Validation Metrics
 
