@@ -1068,6 +1068,10 @@ Required reported metrics:
   - under `50 ms` glass-to-glass latency for local stream after simulation state is available.
 - [ ] Keep simulation determinism independent of renderer frame drops.
 
+#### Phase 6 Implementation Progress
+
+- [x] Add `ow-realtime render --input <dir> --output <dir>` as a dependency-free headless scientific centerline renderer from `worm_motion_log.txt` to deterministic PPM frames.
+
 ### Phase 7 - Validation Metrics
 
 - [ ] Compare realtime outputs to exact/reference outputs at behavior level.
