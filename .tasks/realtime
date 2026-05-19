@@ -236,8 +236,8 @@ This realtime effort still needs a full rule extraction pass. The difference fro
 ### c302 Rules
 
 - [x] Raw connectome CSV schema and hashing.
-- [ ] Neuron-name normalization.
-- [ ] Muscle-name normalization.
+- [x] Neuron-name normalization.
+- [x] Muscle-name normalization.
 - [ ] Cell inclusion/exclusion for FW.
 - [ ] Muscle inclusion/exclusion for FW.
 - [ ] Chemical/electrical synapse classification.
@@ -894,6 +894,7 @@ Required reported metrics:
 - [x] Add a dependency-free Rust parser for `UpdatedSpreadsheetDataReader2`-compatible CSV parsing, neuron-name normalization, body-wall muscle-name normalization, synapse type/class mapping, FW active-neuron constants, and 96-channel Sibernetic muscle bridge ordering.
 - [x] Add CLI inspection commands for connectome summary and legacy muscle-channel order.
 - [x] Add `ow-realtime inspect-connectome-schema` to audit the raw c302 connectome CSV header, row shape, allowed connection types, weight range, row counts, and pinned SHA-256.
+- [x] Add `ow-realtime inspect-connectome-normalization` to audit c302 neuron leading-zero normalization, body-wall muscle renaming, observed group counts, and the expected missing legacy `MVL24`.
 - [x] Document the first source audit, architecture, and extracted c302/Sibernetic business logic in `./documentation`.
 - [x] Port the full FW/C2 parameter override, polarity override, connection-number override, and generated input-current inventory into a structured Rust neural-model IR.
 - [x] Add machine-readable realtime manifest schema definitions and tests before implementing `ow-realtime run`.
