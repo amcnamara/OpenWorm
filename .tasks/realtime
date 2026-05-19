@@ -989,7 +989,7 @@ Required reported metrics:
 
 ### Phase 3 - Reduced Body Model
 
-- [ ] Define the realtime body state:
+- [x] Define the realtime body state:
   - 48, 64, 96, or 128 longitudinal segments.
   - 2D and 3D variants.
   - position, orientation, curvature, velocity, angular velocity.
@@ -1040,6 +1040,7 @@ Required reported metrics:
 - [x] Derive reduced segment tangents and orientations from the relaxed centerline geometry after spacing/contact correction.
 - [x] Extend `ow-realtime inspect-body-debug-log` with adjacent segment-distance range and drift telemetry for finite-chain calibration.
 - [x] Add explicit `ow-realtime run --body-*` reduced-body parameter overrides so calibration and fixture replay can change segment count, spacing, muscle gains, damping, elasticity, drag, and contact terms while preserving auditable `body_model_parameter_hash` output.
+- [x] Add `ow-realtime inspect-body-state` to audit the reduced body state schema, default and candidate segment counts, 2D/3D dimensional policy, position/orientation/curvature/velocity/contact fields, friction/contact parameters, and segment-to-muscle attachment-map contract.
 
 ### Phase 4 - Residual/Surrogate Model
 
