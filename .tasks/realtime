@@ -267,7 +267,7 @@ This realtime effort still needs a full rule extraction pass. The difference fro
 - [x] Passive elasticity and damping constants.
 - [x] Boundary and contact handling.
 - [x] Agar/carpet interaction behavior.
-- [ ] Fluid drag and pressure effects that materially affect crawling.
+- [x] Fluid drag and pressure effects that materially affect crawling.
 - [x] Body centerline extraction from particles.
 - [x] Worm-motion log coordinate mapping.
 
@@ -907,6 +907,7 @@ Required reported metrics:
 - [x] Add `ow-realtime inspect-sibernetic-constants` to audit Sibernetic compiled passive constants, derived `simulationScale` and `beta`, viscosity damping default, elasticity coefficient, PCISPH iteration default, and config `timestep=` override behavior.
 - [x] Add `ow-realtime inspect-sibernetic-boundary` to audit Sibernetic stationary boundary particles, boundary-normal storage in velocity lanes, `max(0, (r0 - distance) / r0)` contact weights, position correction, tangential collision velocity correction, and `0.99` collision epsilon.
 - [x] Add `ow-realtime inspect-sibernetic-agar-carpet` to audit crawling-kernel worm-shell and elastic-carpet type windows, source carpet contact marker rewrite to `2.32`, pair-specific primary viscosity coefficients, always-active trailing viscosity coefficient, target-boundary velocity multiplier, and elastic-carpet force branch factor.
+- [x] Add `ow-realtime inspect-sibernetic-fluid-effects` to audit Sibernetic SPH density floors, predicted-density pressure correction, near-neighbor pressure-force fallback, pressure acceleration scaling, viscosity/drag post-scaling, surface tension, gravity, and the fixed 3-iteration PCISPH pressure loop.
 - [x] Add `ow-realtime inspect-worm-motion-log` to audit exact/reference Sibernetic worm-motion time calculation, elastic-particle type filtering, encoded longitudinal centerline bucket averaging, particle-axis coordinate mapping, `simulationScale * 1000` scaling, row sections, centerline index range, and parser round trip.
 - [x] Document the first source audit, architecture, and extracted c302/Sibernetic business logic in `./documentation`.
 - [x] Port the full FW/C2 parameter override, polarity override, connection-number override, and generated input-current inventory into a structured Rust neural-model IR.
