@@ -989,6 +989,7 @@ Required reported metrics:
 - [x] Add per-segment muscle-drive accumulation from 96-channel activation frames into dorsal/ventral and left/right drive fields.
 - [x] Add an uncalibrated deterministic Euler body step that maps segment muscle drives into curvature, lateral velocity, position, passive decay, and contact-friction effects.
 - [x] Add dependency-free runtime serializers for `manifest.json`, `muscle_activity_buffer.txt`, `worm_motion_log.txt`, and `worm_motion_log.wcon`, plus `ow-realtime inspect-output-sample`.
+- [x] Add explicit reduced centerline export as `position_buffer_reduced.txt`, keeping it separate from legacy Sibernetic `position_buffer.txt`.
 
 ### Phase 4 - Residual/Surrogate Model
 
