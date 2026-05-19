@@ -948,7 +948,7 @@ Required reported metrics:
 - [x] Add `ow-realtime inspect-neural-ir` for generated NeuroML IR summary auditing.
 - [x] Lower electrical and continuous projection members into a Rust IR with source/target populations, cell paths, synapse/component ids, and weights.
 - [ ] Extend projection IR with segment/fraction metadata if future c302 artifacts use multi-segment cells.
-- [ ] Lower projection records into solver-ready equations with resolved conductances and analog synapse parameters.
+- [x] Lower projection records into solver-ready equations with resolved conductances and analog synapse parameters.
 
 ### Phase 3 - Reduced Body Model
 
