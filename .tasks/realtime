@@ -1104,6 +1104,7 @@ Required reported metrics:
 - [x] Add dependency-free parsers for `muscle_activity_buffer.txt` and `worm_motion_log.txt` so validation can consume emitted artifacts.
 - [x] Add `ow-realtime validate --reference <dir> --candidate <dir>` with first-pass `muscle_activation_rmse` and `centerline_rmse_body_lengths` metrics and thresholds from the initial accuracy budget.
 - [x] Add first-pass DFT-based `muscle_activation_phase_error_degrees` validation against the initial muscle phase threshold.
+- [x] Add first-pass dorsal/ventral and left/right muscle group phase consistency validation from the legacy 96-channel order.
 - [x] Add first-pass discrete centerline `curvature_rmse_reference_range` validation against the initial curvature accuracy threshold.
 - [x] Add first-pass centroid trajectory validation for `locomotion_speed_relative_error` and `heading_error_degrees`.
 
