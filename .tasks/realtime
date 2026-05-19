@@ -872,14 +872,14 @@ Required reported metrics:
 
 ### Phase 0 - Define Realtime Contract
 
-- [ ] Create an explicit `realtime` mode in docs and CLI separate from `exact` and `fast`.
+- [x] Create an explicit `realtime` mode in docs and CLI separate from `exact` and `fast`.
 - [ ] Define what "uses the existing connectome data and simulator rules" means:
   - same raw connectome source.
   - same c302 FW/C2 transformation rules.
   - same 96 muscle activation convention.
   - same body/muscle/environment reference behavior.
   - behavior-level, not particle-buffer-level, equivalence.
-- [ ] Define output artifacts:
+- [x] Define output artifacts:
   - realtime run manifest.
   - 96-channel muscle activity.
   - centerline/motion log.
@@ -895,6 +895,7 @@ Required reported metrics:
 - [x] Document the first source audit, architecture, and extracted c302/Sibernetic business logic in `./documentation`.
 - [x] Port the full FW/C2 parameter override, polarity override, connection-number override, and generated input-current inventory into a structured Rust neural-model IR.
 - [x] Add machine-readable realtime manifest schema definitions and tests before implementing `ow-realtime run`.
+- [x] Add `ow-realtime run --mode realtime --output <dir>` as an explicitly unvalidated smoke-run command that writes the required realtime artifact set.
 
 ### Phase 1 - Reference Dataset Generation
 
@@ -991,6 +992,7 @@ Required reported metrics:
 - [x] Add dependency-free runtime serializers for `manifest.json`, `muscle_activity_buffer.txt`, `worm_motion_log.txt`, and `worm_motion_log.wcon`, plus `ow-realtime inspect-output-sample`.
 - [x] Add explicit reduced centerline export as `position_buffer_reduced.txt`, keeping it separate from legacy Sibernetic `position_buffer.txt`.
 - [x] Add explicit segment orientation quaternions to the reduced body state and update them from tangent during body steps.
+- [x] Wire the generated muscle bridge, sample 96-channel drive, uncalibrated reduced body step, and output serializers into a deterministic realtime smoke run.
 
 ### Phase 4 - Residual/Surrogate Model
 
