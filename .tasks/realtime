@@ -1099,6 +1099,11 @@ Required reported metrics:
   - encode FPS.
   - hardware used.
 
+#### Phase 7 Implementation Progress
+
+- [x] Add dependency-free parsers for `muscle_activity_buffer.txt` and `worm_motion_log.txt` so validation can consume emitted artifacts.
+- [x] Add `ow-realtime validate --reference <dir> --candidate <dir>` with first-pass `muscle_activation_rmse` and `centerline_rmse_body_lengths` metrics and thresholds from the initial accuracy budget.
+
 ### Phase 8 - Hardware Escalation Rules
 
 - [ ] Start with RTX 4090 as the required benchmark target.
