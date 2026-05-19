@@ -279,7 +279,7 @@ This realtime effort still needs a full rule extraction pass. The difference fro
 - [x] `worm_motion_log.txt` shape and coordinate conventions.
 - [x] WCON export shape and coordinate conventions.
 - [x] Render camera defaults and muscle-color semantics.
-- [ ] Video frame rate, resolution, and metadata conventions.
+- [x] Video frame rate, resolution, and metadata conventions.
 
 ## Realtime Output Contract
 
@@ -909,7 +909,8 @@ Required reported metrics:
 - [x] Add `ow-realtime inspect-sibernetic-agar-carpet` to audit crawling-kernel worm-shell and elastic-carpet type windows, source carpet contact marker rewrite to `2.32`, pair-specific primary viscosity coefficients, always-active trailing viscosity coefficient, target-boundary velocity multiplier, and elastic-carpet force branch factor.
 - [x] Add `ow-realtime inspect-sibernetic-fluid-effects` to audit Sibernetic SPH density floors, predicted-density pressure correction, near-neighbor pressure-force fallback, pressure acceleration scaling, viscosity/drag post-scaling, surface tension, gravity, and the fixed 3-iteration PCISPH pressure loop.
 - [x] Add `ow-realtime inspect-worm-motion-log` to audit exact/reference Sibernetic worm-motion time calculation, elastic-particle type filtering, encoded longitudinal centerline bucket averaging, particle-axis coordinate mapping, `simulationScale * 1000` scaling, row sections, centerline index range, and parser round trip.
-- [x] Add `ow-realtime inspect-sibernetic-render-output` to audit legacy Sibernetic VTK state export naming, point/cell arrays, `CellType`, `MuscleNumber`, and `MuscleActivation` scalar semantics, plus the absence of source-defined camera defaults or hard-coded RGB muscle colors.
+- [x] Add `ow-realtime inspect-sibernetic-render-output` to audit legacy Sibernetic VTK state export naming, point/cell arrays, `CellType`, `MuscleNumber`, and `MuscleActivation` scalar semantics, plus the absence of VTK state-export camera defaults or hard-coded RGB muscle colors.
+- [x] Add `ow-realtime inspect-sibernetic-video-output` to audit the legacy Sibernetic GLUT visualizer window, camera, FPS diagnostic, resize/projection, muscle line-width, and no-video-output conventions against the current render metadata video placeholders.
 - [x] Document the first source audit, architecture, and extracted c302/Sibernetic business logic in `./documentation`.
 - [x] Port the full FW/C2 parameter override, polarity override, connection-number override, and generated input-current inventory into a structured Rust neural-model IR.
 - [x] Add machine-readable realtime manifest schema definitions and tests before implementing `ow-realtime run`.
@@ -1125,6 +1126,7 @@ Required reported metrics:
 - [x] Add `ow-realtime export-mesh` to write dependency-free OBJ/MTL reduced-body mesh frames with per-segment muscle-activity materials.
 - [x] Add `render_metadata.json` to headless PPM render outputs with frame format, resolution, timestamp-derived nominal FPS, camera bounds policy, and legacy muscle-color semantics.
 - [x] Add `ow-realtime inspect-render-metadata` to validate and summarize render sidecar camera, color, frame cadence, resolution, loaded-input, and video placeholder conventions.
+- [x] Add `ow-realtime inspect-sibernetic-video-output` to distinguish legacy Sibernetic interactive GLUT visualization and measured FPS from the current headless render metadata video placeholder fields.
 
 ### Phase 7 - Validation Metrics
 
