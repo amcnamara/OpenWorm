@@ -928,6 +928,7 @@ Required reported metrics:
 #### Phase 1 Implementation Progress
 
 - [x] Add `ow-realtime dataset-manifest` to recursively fingerprint emitted run directories with train/validation/hidden split metadata, simulator id, simulator commit, vendored source hashes, and per-artifact SHA-256 records.
+- [x] Add `ow-realtime run --muscle-source neural --neural-input-gain` and `--neural-silence` to generate unvalidated neural smoke perturbation traces for current-amplitude and selected-population silencing fixture coverage.
 
 ### Phase 2 - c302-Compatible Neural Model IR
 
