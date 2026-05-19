@@ -1147,6 +1147,7 @@ Required reported metrics:
 - [x] Add `ow-realtime scorecard --benchmark-muscle-source neural` so scorecard latency can target the generated neural smoke runtime path.
 - [x] Add dependency-free `ow-realtime perturb-muscle-activity` trace generation for dorsal/ventral, left/right, and quadrant gain sweeps before replay validation.
 - [x] Add dependency-free `ow-realtime validate-render` PPM frame-directory comparison for fixed-camera visual validation of rendered centerline, body, and muscle-heatmap outputs.
+- [x] Add optional `ow-realtime scorecard --render-input` host PPM render benchmarking so build scorecards can report headless render FPS.
 
 ### Phase 8 - Hardware Escalation Rules
 
