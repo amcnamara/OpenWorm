@@ -996,7 +996,7 @@ Required reported metrics:
   - contact/friction state.
   - segment-to-muscle attachment map.
 - [x] Derive the 96-channel muscle-to-segment mapping from the Sibernetic muscle order and body-wall naming convention.
-- [ ] Implement a mechanistic model:
+- [x] Implement a mechanistic model:
   - Cosserat rod, finite-segment elastic body, or mass-spring chain.
   - dorsal/ventral and left/right muscle forces.
   - passive elasticity.
@@ -1041,6 +1041,7 @@ Required reported metrics:
 - [x] Extend `ow-realtime inspect-body-debug-log` with adjacent segment-distance range and drift telemetry for finite-chain calibration.
 - [x] Add explicit `ow-realtime run --body-*` reduced-body parameter overrides so calibration and fixture replay can change segment count, spacing, muscle gains, damping, elasticity, drag, and contact terms while preserving auditable `body_model_parameter_hash` output.
 - [x] Add `ow-realtime inspect-body-state` to audit the reduced body state schema, default and candidate segment counts, 2D/3D dimensional policy, position/orientation/curvature/velocity/contact fields, friction/contact parameters, and segment-to-muscle attachment-map contract.
+- [x] Add `ow-realtime inspect-body-mechanics` to audit the current uncalibrated finite-segment mechanics scaffold: drive-to-curvature muscle-force proxy, passive curvature decay, neighbor elasticity, damping, ground contact/friction, fluid drag, spacing relaxation, parameter hash, and pending Sibernetic reference-fit status.
 
 ### Phase 4 - Residual/Surrogate Model
 
