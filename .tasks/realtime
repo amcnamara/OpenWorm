@@ -238,8 +238,8 @@ This realtime effort still needs a full rule extraction pass. The difference fro
 - [x] Raw connectome CSV schema and hashing.
 - [x] Neuron-name normalization.
 - [x] Muscle-name normalization.
-- [ ] Cell inclusion/exclusion for FW.
-- [ ] Muscle inclusion/exclusion for FW.
+- [x] Cell inclusion/exclusion for FW.
+- [x] Muscle inclusion/exclusion for FW.
 - [x] Chemical/electrical synapse classification.
 - [ ] Excitatory/inhibitory polarity rules.
 - [ ] Connection-number overrides.
@@ -896,6 +896,7 @@ Required reported metrics:
 - [x] Add `ow-realtime inspect-connectome-schema` to audit the raw c302 connectome CSV header, row shape, allowed connection types, weight range, row counts, and pinned SHA-256.
 - [x] Add `ow-realtime inspect-connectome-normalization` to audit c302 neuron leading-zero normalization, body-wall muscle renaming, observed group counts, and the expected missing legacy `MVL24`.
 - [x] Add `ow-realtime inspect-connectome-synapses` to audit c302 `chemical`/`electrical` to `Send`/`GapJunction` syntype mapping and `Acetylcholine`/`GABA`/`Generic_GJ` synclass counts.
+- [x] Add `ow-realtime inspect-fw-inclusion` to audit FW active-cell inclusion, inactive neuron count, generated body-wall muscle inclusion, and the expected missing legacy `MVL24`.
 - [x] Document the first source audit, architecture, and extracted c302/Sibernetic business logic in `./documentation`.
 - [x] Port the full FW/C2 parameter override, polarity override, connection-number override, and generated input-current inventory into a structured Rust neural-model IR.
 - [x] Add machine-readable realtime manifest schema definitions and tests before implementing `ow-realtime run`.
