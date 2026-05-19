@@ -241,10 +241,10 @@ This realtime effort still needs a full rule extraction pass. The difference fro
 - [x] Cell inclusion/exclusion for FW.
 - [x] Muscle inclusion/exclusion for FW.
 - [x] Chemical/electrical synapse classification.
-- [ ] Excitatory/inhibitory polarity rules.
-- [ ] Connection-number overrides.
-- [ ] Conductance/parameter overrides.
-- [ ] Input current definitions.
+- [x] Excitatory/inhibitory polarity rules.
+- [x] Connection-number overrides.
+- [x] Conductance/parameter overrides.
+- [x] Input current definitions.
 - [x] Generated population names and ordering.
 - [x] Generated muscle calcium variables.
 - [x] Mapping from generated variables to 96 muscle output channels.
@@ -898,6 +898,7 @@ Required reported metrics:
 - [x] Add `ow-realtime inspect-connectome-synapses` to audit c302 `chemical`/`electrical` to `Send`/`GapJunction` syntype mapping and `Acetylcholine`/`GABA`/`Generic_GJ` synclass counts.
 - [x] Add `ow-realtime inspect-fw-inclusion` to audit FW active-cell inclusion, inactive neuron count, generated body-wall muscle inclusion, and the expected missing legacy `MVL24`.
 - [x] Add `ow-realtime inspect-fw-populations` to audit generated FW/C2 population names, parser-preserved ordering, population-order hash, and the expected missing legacy `MVL24`.
+- [x] Add `ow-realtime inspect-fw-c2-rules` to audit every FW/C2 excluded connection, polarity override, connection-number override, conductance/parameter override, and generated input-current row.
 - [x] Document the first source audit, architecture, and extracted c302/Sibernetic business logic in `./documentation`.
 - [x] Port the full FW/C2 parameter override, polarity override, connection-number override, and generated input-current inventory into a structured Rust neural-model IR.
 - [x] Add machine-readable realtime manifest schema definitions and tests before implementing `ow-realtime run`.
