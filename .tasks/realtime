@@ -1015,6 +1015,7 @@ Required reported metrics:
 - [x] Add segment-spacing relaxation so adjacent reduced body segments are pulled toward the configured rest length after integration.
 - [x] Derive reduced segment tangents and orientations from the relaxed centerline geometry after spacing/contact correction.
 - [x] Extend `ow-realtime inspect-body-debug-log` with adjacent segment-distance range and drift telemetry for finite-chain calibration.
+- [x] Add explicit `ow-realtime run --body-*` reduced-body parameter overrides so calibration and fixture replay can change segment count, spacing, muscle gains, damping, elasticity, drag, and contact terms while preserving auditable `body_model_parameter_hash` output.
 
 ### Phase 4 - Residual/Surrogate Model
 
