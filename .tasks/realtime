@@ -1008,6 +1008,7 @@ Required reported metrics:
 - [x] Include reduced-body `segment_count` in the canonical parameter text and use it to construct realtime state and muscle attachments.
 - [x] Add finite-segment curvature elasticity so neighboring reduced body segments influence curvature updates.
 - [x] Add segment-spacing relaxation so adjacent reduced body segments are pulled toward the configured rest length after integration.
+- [x] Derive reduced segment tangents and orientations from the relaxed centerline geometry after spacing/contact correction.
 
 ### Phase 4 - Residual/Surrogate Model
 
