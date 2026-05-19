@@ -1009,6 +1009,7 @@ Required reported metrics:
 - [x] Add finite-segment curvature elasticity so neighboring reduced body segments influence curvature updates.
 - [x] Add segment-spacing relaxation so adjacent reduced body segments are pulled toward the configured rest length after integration.
 - [x] Derive reduced segment tangents and orientations from the relaxed centerline geometry after spacing/contact correction.
+- [x] Extend `ow-realtime inspect-body-debug-log` with adjacent segment-distance range and drift telemetry for finite-chain calibration.
 
 ### Phase 4 - Residual/Surrogate Model
 
