@@ -1083,6 +1083,7 @@ Required reported metrics:
 - [x] Add reduced-state render source support via `--source reduced-position`, consuming `position_buffer_reduced.txt` directly.
 - [x] Add optional headless reference overlay rendering via `ow-realtime render --reference <dir>` with frame-count and timestamp checks.
 - [x] Add `ow-realtime render --mode body` to draw a tapered reduced-body ribbon colored from matching 96-channel muscle activity.
+- [x] Add `ow-realtime render --mode debug-drives` to draw per-segment dorsal/ventral and left/right muscle-drive vectors over the reduced centerline.
 
 ### Phase 7 - Validation Metrics
 
