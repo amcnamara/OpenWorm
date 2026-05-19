@@ -1219,8 +1219,12 @@ Required reported metrics:
 - [ ] Stream path sustains 60 FPS with bounded latency.
 - [ ] Realtime outputs pass all behavior metrics on public validation fixtures.
 - [ ] Realtime outputs pass hidden fixture validation before release.
-- [ ] CLI and manifest clearly label the run as `realtime`, not `exact`.
-- [ ] Documentation explains where realtime approximates Sibernetic/c302 and where it preserves rules exactly.
+- [x] CLI and manifest clearly label the run as `realtime`, not `exact`.
+- [x] Documentation explains where realtime approximates Sibernetic/c302 and where it preserves rules exactly.
+
+#### Phase 9 Implementation Progress
+
+- [x] Add `ow-realtime inspect-product-acceptance` and `documentation/product-acceptance.md` to audit implemented realtime CLI/manifest/report labels, unsupported-condition labeling, preserved OpenWorm logic, current approximations, and pending RTX 4090, render, stream, public fixture, and hidden fixture release blockers.
 
 ## Risks
 
