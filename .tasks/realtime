@@ -1002,6 +1002,7 @@ Required reported metrics:
 - [x] Add `body_debug_log.txt` to realtime run outputs with per-frame reduced segment state, contact, curvature, and accumulated muscle-drive telemetry.
 - [x] Add a dependency-free parser and `ow-realtime inspect-body-debug-log` summary for `body_debug_log.txt` calibration/debug telemetry.
 - [x] Add an uncalibrated ground-plane contact response that derives segment contact, clamps dorsal/ventral penetration, and feeds contact friction.
+- [x] Add canonical reduced-body parameter text, SHA-256 fingerprinting, manifest `body_model_parameter_hash`, and `ow-realtime inspect-body-parameters`.
 
 ### Phase 4 - Residual/Surrogate Model
 
