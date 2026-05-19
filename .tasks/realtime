@@ -954,6 +954,7 @@ Required reported metrics:
 - [x] Lower projection records into solver-ready equations with resolved conductances and analog synapse parameters.
 - [x] Add a generated muscle-calcium to legacy 96-channel output map with the `MVR24` duplicate, `MVL24` missing-channel quirk, and `min(1, calcium / 4e-7)` activation scale.
 - [x] Add `ow-realtime run --mode realtime --muscle-activity <file>` to replay precomputed 96-channel muscle activation traces through the reduced body path.
+- [x] Add a dependency-free `william-neural` runtime smoke step that consumes generated FW/C2 populations, pulse inputs, resolved electrical/continuous couplings, and exports 96 legacy muscle activations for inspection.
 
 ### Phase 3 - Reduced Body Model
 
