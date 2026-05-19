@@ -274,7 +274,7 @@ This realtime effort still needs a full rule extraction pass. The difference fro
 ### Output Rules
 
 - [x] `manifest.json` fields needed by realtime tools.
-- [ ] Legacy `report.json` fields needed by current tools.
+- [x] Legacy `report.json` fields needed by current tools.
 - [x] `muscle_activity_buffer.txt` shape and format.
 - [x] `worm_motion_log.txt` shape and coordinate conventions.
 - [x] WCON export shape and coordinate conventions.
@@ -896,6 +896,7 @@ Required reported metrics:
 - [x] Port the full FW/C2 parameter override, polarity override, connection-number override, and generated input-current inventory into a structured Rust neural-model IR.
 - [x] Add machine-readable realtime manifest schema definitions and tests before implementing `ow-realtime run`.
 - [x] Add `ow-realtime run --mode realtime --output <dir>` as an explicitly unvalidated smoke-run command that writes the required realtime artifact set.
+- [x] Add a realtime `report.json` compatibility shape with `completed successfully`, `mode: realtime`, and `validation_status: not_run` fields for existing OpenWorm wrappers.
 
 ### Phase 1 - Reference Dataset Generation
 
