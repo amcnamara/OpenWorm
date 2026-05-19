@@ -959,7 +959,7 @@ Required reported metrics:
   - position, orientation, curvature, velocity, angular velocity.
   - contact/friction state.
   - segment-to-muscle attachment map.
-- [ ] Derive the 96-channel muscle-to-segment mapping from the Sibernetic muscle order and body-wall naming convention.
+- [x] Derive the 96-channel muscle-to-segment mapping from the Sibernetic muscle order and body-wall naming convention.
 - [ ] Implement a mechanistic model:
   - Cosserat rod, finite-segment elastic body, or mass-spring chain.
   - dorsal/ventral and left/right muscle forces.
@@ -979,6 +979,12 @@ Required reported metrics:
 - [ ] Implement CUDA kernels for the reduced body update.
 - [ ] Use CUDA Graphs for fixed-window execution.
 - [ ] Benchmark on RTX 4090.
+
+#### Phase 3 Implementation Progress
+
+- [x] Add an internal `william-body` Rust crate with a dependency-free 48-segment reduced body state and deterministic straight-state initializer.
+- [x] Add a default 96-channel muscle attachment map from generated legacy muscle outputs to dorsal/ventral, left/right, longitudinal slot, and reduced body segment ranges.
+- [x] Add `ow-realtime inspect-body-map` and `documentation/body-model.md` to audit the current reduced body topology and muscle attachments.
 
 ### Phase 4 - Residual/Surrogate Model
 
