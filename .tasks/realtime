@@ -956,6 +956,7 @@ Required reported metrics:
 - [x] Add `ow-realtime run --mode realtime --muscle-activity <file>` to replay precomputed 96-channel muscle activation traces through the reduced body path.
 - [x] Add a dependency-free `william-neural` runtime smoke step that consumes generated FW/C2 populations, pulse inputs, resolved electrical/continuous couplings, and exports 96 legacy muscle activations for inspection.
 - [x] Add `ow-realtime run --mode realtime --muscle-source neural` to write a full legacy 96-channel muscle trace from the generated FW/C2 neural smoke runtime.
+- [x] Add dependency-free SHA-256 audit coverage for the vendored connectome CSV and generated FW/C2 NeuroML artifacts; LEMS/HOC fixtures are not vendored yet.
 
 ### Phase 3 - Reduced Body Model
 
