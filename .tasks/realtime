@@ -1001,6 +1001,7 @@ Required reported metrics:
 - [x] Wire the generated muscle bridge, sample 96-channel drive, uncalibrated reduced body step, and output serializers into a deterministic realtime smoke run.
 - [x] Add `body_debug_log.txt` to realtime run outputs with per-frame reduced segment state, contact, curvature, and accumulated muscle-drive telemetry.
 - [x] Add a dependency-free parser and `ow-realtime inspect-body-debug-log` summary for `body_debug_log.txt` calibration/debug telemetry.
+- [x] Add an uncalibrated ground-plane contact response that derives segment contact, clamps dorsal/ventral penetration, and feeds contact friction.
 
 ### Phase 4 - Residual/Surrogate Model
 
