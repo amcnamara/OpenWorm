@@ -273,7 +273,8 @@ This realtime effort still needs a full rule extraction pass. The difference fro
 
 ### Output Rules
 
-- [ ] `report.json` fields needed by current tools.
+- [x] `manifest.json` fields needed by realtime tools.
+- [ ] Legacy `report.json` fields needed by current tools.
 - [x] `muscle_activity_buffer.txt` shape and format.
 - [x] `worm_motion_log.txt` shape and coordinate conventions.
 - [x] WCON export shape and coordinate conventions.
@@ -987,7 +988,7 @@ Required reported metrics:
 - [x] Add `ow-realtime inspect-body-map` and `documentation/body-model.md` to audit the current reduced body topology and muscle attachments.
 - [x] Add per-segment muscle-drive accumulation from 96-channel activation frames into dorsal/ventral and left/right drive fields.
 - [x] Add an uncalibrated deterministic Euler body step that maps segment muscle drives into curvature, lateral velocity, position, passive decay, and contact-friction effects.
-- [x] Add dependency-free runtime serializers for `muscle_activity_buffer.txt`, `worm_motion_log.txt`, and `worm_motion_log.wcon`, plus `ow-realtime inspect-output-sample`.
+- [x] Add dependency-free runtime serializers for `manifest.json`, `muscle_activity_buffer.txt`, `worm_motion_log.txt`, and `worm_motion_log.wcon`, plus `ow-realtime inspect-output-sample`.
 
 ### Phase 4 - Residual/Surrogate Model
 
