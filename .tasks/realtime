@@ -1006,6 +1006,7 @@ Required reported metrics:
 - [x] Write `body_parameters.txt` into realtime run directories so `body_model_parameter_hash` is auditable from emitted artifacts.
 - [x] Add an explicit `fluid_drag_per_s` reduced-body parameter and apply it as a separate auditable drag term during body stepping.
 - [x] Include reduced-body `segment_count` in the canonical parameter text and use it to construct realtime state and muscle attachments.
+- [x] Add finite-segment curvature elasticity so neighboring reduced body segments influence curvature updates.
 
 ### Phase 4 - Residual/Surrogate Model
 
