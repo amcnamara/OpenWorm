@@ -1106,6 +1106,7 @@ Required reported metrics:
 - [x] Add `ow-realtime render --mode contact-debug` to consume `body_debug_log.txt` and overlay reduced-state contact, curvature, and drive diagnostics.
 - [x] Add `ow-realtime benchmark-render` to report dependency-free host PPM render FPS for centerline, body, muscle heatmap, debug-drive, and contact-debug modes.
 - [x] Add `ow-realtime export-mesh` to write dependency-free OBJ/MTL reduced-body mesh frames with per-segment muscle-activity materials.
+- [x] Add `render_metadata.json` to headless PPM render outputs with frame format, resolution, timestamp-derived nominal FPS, camera bounds policy, and legacy muscle-color semantics.
 
 ### Phase 7 - Validation Metrics
 
