@@ -1045,6 +1045,10 @@ Required reported metrics:
   - p50/p95/p99 latency.
 - [ ] Optimize only after correctness and behavior metrics are in place.
 
+#### Phase 5 Implementation Progress
+
+- [x] Add `ow-realtime benchmark --mode realtime` as a dependency-free host smoke-window profiler hook reporting p50/p95/p99/max latency, throughput, and raw samples.
+
 ### Phase 6 - Realtime Rendering And Streaming
 
 - [ ] Render from the reduced body state, not from legacy SPH particles.
