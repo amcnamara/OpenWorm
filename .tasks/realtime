@@ -1080,11 +1080,11 @@ Required reported metrics:
 - [ ] Use CUDA Graphs for the fixed update sequence.
 - [ ] Avoid CPU synchronization in the hot path.
 - [ ] Add asynchronous telemetry copies at low frequency.
-- [ ] Implement a fixed-window update API:
+- [x] Implement a fixed-window update API:
   - `step_window(150_ms)`.
   - `step_frame(16.667_ms)` for rendering.
   - `step_interactive(dt)` for UI-driven stepping.
-- [ ] Support deterministic replay with fixed seeds and recorded inputs.
+- [x] Support deterministic replay with fixed seeds and recorded inputs.
 - [ ] Add profiler hooks:
   - CUDA events.
   - Nsight Systems markers.
@@ -1095,6 +1095,7 @@ Required reported metrics:
 #### Phase 5 Implementation Progress
 
 - [x] Add `ow-realtime benchmark --mode realtime` as a dependency-free host smoke-window profiler hook reporting p50/p95/p99/max latency, throughput, and raw samples.
+- [x] Add `ow-realtime inspect-update-api` and `documentation/runtime-api.md` to audit the current host fixed-window scaffold: 150 ms windows, 60 FPS frame steps, interactive single-step updates, recorded `muscle_activity_buffer.txt` replay, no-RNG deterministic replay policy, host latency telemetry, renderer-frame-drop independence, and pending CUDA hot-path, persistent-buffer, CUDA Graph, CUDA event, Nsight marker, and async GPU telemetry work.
 
 ### Phase 6 - Realtime Rendering And Streaming
 
