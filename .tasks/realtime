@@ -730,8 +730,8 @@ The realtime model should be calibrated in layers.
 
 ### Layer 1 - Muscle Mapping
 
-- [ ] Map 96 muscle channels onto reduced body segments.
-- [ ] Preserve dorsal/ventral and left/right grouping.
+- [x] Map 96 muscle channels onto reduced body segments.
+- [x] Preserve dorsal/ventral and left/right grouping.
 - [ ] Fit per-muscle gain and delay only if reference data proves they are needed.
 - [ ] Keep default gains interpretable and documented.
 
@@ -984,6 +984,7 @@ Required reported metrics:
 - [x] Add a dependency-free `william-neural` runtime smoke step that consumes generated FW/C2 populations, pulse inputs, resolved electrical/continuous couplings, and exports 96 legacy muscle activations for inspection.
 - [x] Add `ow-realtime run --mode realtime --muscle-source neural` to write a full legacy 96-channel muscle trace from the generated FW/C2 neural smoke runtime.
 - [x] Add dependency-free SHA-256 audit coverage for the vendored connectome CSV and generated FW/C2 NeuroML artifacts; LEMS/HOC fixtures are not vendored yet.
+- [x] Extend `ow-realtime inspect-body-map` with summary counts proving the 96 legacy muscle channels map onto 48 reduced segments while preserving dorsal/ventral, left/right, and quadrant grouping.
 
 ### Phase 3 - Reduced Body Model
 
