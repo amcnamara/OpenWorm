@@ -1119,7 +1119,7 @@ Required reported metrics:
   - 60 FPS minimum.
   - 120 FPS optional.
   - under `50 ms` glass-to-glass latency for local stream after simulation state is available.
-- [ ] Keep simulation determinism independent of renderer frame drops.
+- [x] Keep simulation determinism independent of renderer frame drops.
 
 #### Phase 6 Implementation Progress
 
@@ -1136,6 +1136,7 @@ Required reported metrics:
 - [x] Add `ow-realtime inspect-render-metadata` to validate and summarize render sidecar camera, color, frame cadence, resolution, loaded-input, and video placeholder conventions.
 - [x] Add `ow-realtime inspect-sibernetic-video-output` to distinguish legacy Sibernetic interactive GLUT visualization and measured FPS from the current headless render metadata video placeholder fields.
 - [x] Add `ow-realtime inspect-render-pipeline` to audit reduced-state render sources, unsupported legacy SPH particle rendering, available headless PPM modes, OBJ/MTL mesh export, reference overlays, no renderer feedback into simulation, and pending GPU interop/video/streaming work.
+- [x] Add `ow-realtime render --frame-offset/--frame-stride` deterministic frame selection so the renderer can drop recorded frames without changing simulation artifacts; `render_metadata.json` records the source frame count and selected cadence.
 
 ### Phase 7 - Validation Metrics
 
