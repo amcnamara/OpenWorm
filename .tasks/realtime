@@ -261,7 +261,7 @@ This realtime effort still needs a full rule extraction pass. The difference fro
 ### Sibernetic Body Rules
 
 - [x] Particle type semantics.
-- [ ] Muscle id encoding in connections.
+- [x] Muscle id encoding in connections.
 - [ ] Elastic connection force rules.
 - [ ] Muscle-force rules.
 - [ ] Passive elasticity and damping constants.
@@ -901,6 +901,7 @@ Required reported metrics:
 - [x] Add `ow-realtime inspect-fw-c2-rules` to audit every FW/C2 excluded connection, polarity override, connection-number override, conductance/parameter override, and generated input-current row.
 - [x] Add `ow-realtime inspect-neural-bridge` to audit `--dt-ms` millisecond stepping, simulated-second export timestamps, `muscle_activity_buffer.txt` row shape, parser round trip, and one-step delayed neural-to-body body-drive semantics.
 - [x] Add `ow-realtime inspect-sibernetic-particles` to audit Sibernetic 4D particle position/velocity vectors, fourth-lane type semantics, liquid/elastic/boundary base type values, and encoded elastic centerline subtypes.
+- [x] Add `ow-realtime inspect-sibernetic-connections` to audit Sibernetic elastic-connection slot counts, flattened buffer layout, lane meanings, sentinel values, and 1-based muscle id to activation-channel mapping.
 - [x] Add `ow-realtime inspect-worm-motion-log` to audit exact/reference Sibernetic worm-motion time calculation, elastic-particle type filtering, encoded longitudinal centerline bucket averaging, particle-axis coordinate mapping, `simulationScale * 1000` scaling, row sections, centerline index range, and parser round trip.
 - [x] Document the first source audit, architecture, and extracted c302/Sibernetic business logic in `./documentation`.
 - [x] Port the full FW/C2 parameter override, polarity override, connection-number override, and generated input-current inventory into a structured Rust neural-model IR.
