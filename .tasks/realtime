@@ -1004,6 +1004,7 @@ Required reported metrics:
 - [x] Add an uncalibrated ground-plane contact response that derives segment contact, clamps dorsal/ventral penetration, and feeds contact friction.
 - [x] Add canonical reduced-body parameter text, SHA-256 fingerprinting, manifest `body_model_parameter_hash`, and `ow-realtime inspect-body-parameters`.
 - [x] Write `body_parameters.txt` into realtime run directories so `body_model_parameter_hash` is auditable from emitted artifacts.
+- [x] Add an explicit `fluid_drag_per_s` reduced-body parameter and apply it as a separate auditable drag term during body stepping.
 
 ### Phase 4 - Residual/Surrogate Model
 
