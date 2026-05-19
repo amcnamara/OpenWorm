@@ -1144,6 +1144,7 @@ Required reported metrics:
 - [x] Add `ow-realtime scorecard` to combine validation metrics, p50/p95/p99 host benchmark latency, hardware identity, and explicit uncollected GPU/render/encode telemetry fields.
 - [x] Add `ow-realtime benchmark --muscle-source neural` so host latency reports can time the generated neural smoke runtime path separately from the sample drive.
 - [x] Add `ow-realtime scorecard --benchmark-muscle-source neural` so scorecard latency can target the generated neural smoke runtime path.
+- [x] Add dependency-free `ow-realtime perturb-muscle-activity` trace generation for dorsal/ventral, left/right, and quadrant gain sweeps before replay validation.
 
 ### Phase 8 - Hardware Escalation Rules
 
