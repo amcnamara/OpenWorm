@@ -624,6 +624,7 @@ Suggested first-pass public validation thresholds:
 - Muscle activation phase error: `<=10 degrees` for dominant oscillatory components.
 - Centerline point RMSE: `<=5 percent` of body length over 150 ms windows.
 - Curvature RMSE: `<=10 percent` of reference curvature dynamic range.
+- Bend amplitude error: `<=10 percent`.
 - Bend frequency error: `<=5 percent`.
 - Bend wavelength error: `<=10 percent`.
 - Forward locomotion speed error: `<=10 percent`.
@@ -1136,6 +1137,7 @@ Required reported metrics:
 - [x] Add first-pass dorsal/ventral and left/right muscle group phase consistency validation from the legacy 96-channel order.
 - [x] Add first-pass discrete centerline `curvature_rmse_reference_range` validation against the initial curvature accuracy threshold.
 - [x] Add first-pass centerline-curvature `bend_frequency_relative_error` and `bend_wavelength_relative_error` metrics against the initial bend accuracy thresholds.
+- [x] Add first-pass `bend_amplitude_relative_error` validation from centerline displacement relative to the head-tail chord.
 - [x] Add first-pass centroid trajectory validation for `locomotion_speed_relative_error` and `heading_error_degrees`.
 - [x] Add first-pass long-horizon `rollout_stability_violation_count` validation for self-intersection, body-length drift, and curvature explosion.
 - [x] Add `ow-realtime validate --min-duration-ms` to enforce 150 ms, 1 s, and 10 s validation-window gates before reporting metrics.
