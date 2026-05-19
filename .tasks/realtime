@@ -1104,6 +1104,7 @@ Required reported metrics:
 - [x] Add dependency-free parsers for `muscle_activity_buffer.txt` and `worm_motion_log.txt` so validation can consume emitted artifacts.
 - [x] Add `ow-realtime validate --reference <dir> --candidate <dir>` with first-pass `muscle_activation_rmse` and `centerline_rmse_body_lengths` metrics and thresholds from the initial accuracy budget.
 - [x] Add first-pass discrete centerline `curvature_rmse_reference_range` validation against the initial curvature accuracy threshold.
+- [x] Add first-pass centroid trajectory validation for `locomotion_speed_relative_error` and `heading_error_degrees`.
 
 ### Phase 8 - Hardware Escalation Rules
 
