@@ -1,0 +1,1124 @@
+# Realtime OpenWorm Simulation Plan
+
+This task file is the plan for a new realtime simulator that uses the existing OpenWorm connectome data and simulator rules, but is explicitly optimized for interactive/realtime execution on an NVIDIA RTX 4090-class GPU or larger.
+
+This is a separate target from `.tasks/nvidia_accelerate` and `.tasks/apple_accelerate`. Those plans preserve behavior identity with the current 5 us timestep c302/Sibernetic stack. This plan targets realtime behavior with validation against that stack, not byte-identical reproduction of every particle-level intermediate state.
+
+Official hardware references checked for this plan:
+
+- NVIDIA GeForce RTX 4090 specs: https://www.nvidia.com/en-gb/geforce/graphics-cards/40-series/rtx-4090/
+- NVIDIA GeForce RTX 5090 specs: https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/
+- NVIDIA RTX PRO 6000 Blackwell specs: https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-6000/
+- NVIDIA H200 specs: https://www.nvidia.com/en-gb/data-center/h200/
+
+## Objective
+
+Create a realtime simulator that can run `150 ms` of worm simulation in `150 ms` or less on a single RTX 4090 when possible, with a larger NVIDIA GPU tier allowed if the validated model requires it.
+
+The simulator must use:
+
+- The existing connectome source data.
+- The existing c302 FW/C2 model rules as the neural/model-construction reference.
+- The existing 96 muscle activation convention.
+- The existing Sibernetic body/muscle/environment rules as the physical reference.
+- The existing output concepts: muscle activity, worm motion, visualization, video, and streamable frames.
+
+The simulator does not need to be byte-identical to Sibernetic/c302 at the particle-buffer level. It must instead meet quantified behavior-matching criteria against the exact/reference simulator.
+
+## Definitions
+
+### Exact Simulator
+
+The exact simulator is the legacy-compatible c302/Sibernetic implementation or the future accelerated exact implementation from `.tasks/nvidia_accelerate`. It preserves the 5 us timestep, c302-generated neural model, Sibernetic particle/body state, and legacy outputs.
+
+Use exact mode for:
+
+- Ground-truth fixture generation.
+- Scientific compatibility checks.
+- Regression tests for parser/model changes.
+- Training data generation for realtime mode.
+
+### Realtime Simulator
+
+The realtime simulator is a validated approximation that consumes the same connectome/model rules and produces comparable behavior-level outputs within explicit tolerances.
+
+Use realtime mode for:
+
+- Interactive exploration.
+- Realtime visualization.
+- Parameter sweeps where approximate behavior is acceptable.
+- Demonstrations and streamed output.
+- Later interactive scientific workflows after validation is strong enough.
+
+### Behavioral Identity
+
+Behavioral identity means the output is indistinguishable for the metrics that matter for the intended workflow, not that every particle state matches.
+
+Required behavior classes:
+
+- Neural/muscle timing.
+- Dorsal/ventral and left/right phase.
+- Centerline shape.
+- Body curvature wave propagation.
+- Locomotion speed and direction.
+- Response to stimulation and perturbation.
+- Visual muscle activation and body motion.
+
+### Hard Realtime
+
+For this plan, hard realtime means:
+
+- `150 ms` simulated time completes in `<=150 ms` wall time after warmup.
+- The p95 latency of repeated `150 ms` windows is `<=150 ms`.
+- The p99 latency target is tracked and must be `<=200 ms` before release.
+
+### Preferred Realtime
+
+Preferred realtime means:
+
+- `150 ms` simulated time completes in `<=25 ms` wall time headless after warmup.
+- The renderer can use the remaining budget to sustain 60 FPS or better.
+
+## Realtime Reality Check
+
+The legacy default timestep is `dt=0.005 ms`.
+
+For a `150 ms` simulation:
+
+```text
+150 ms / 0.005 ms = 30,000 simulation steps
+150 ms wall time / 30,000 steps = 5 microseconds per full step
+```
+
+A full legacy step includes neural update, particle hash/sort, grid index, neighbor search, density, forces, elastic/muscle coupling, three PCISPH correction loops, integration, membrane interactions, logging decisions, and optional rendering. A literal byte-identical realtime implementation would need every complete step to finish in about `5 us`, which is not a realistic engineering target even on high-end GPUs.
+
+Therefore this plan uses a realtime validated-model strategy:
+
+- Preserve the biological/connectome and simulator-rule inputs.
+- Use the exact legacy/accelerated simulator as the oracle.
+- Build a reduced or surrogate simulator that matches behavior-level outputs.
+- Keep exact mode and realtime mode separate in CLI, docs, tests, and output manifests.
+
+## Design Principles
+
+- Start with mechanistic structure and add learning only where measurements show systematic error.
+- Preserve connectome and c302 model-construction rules exactly, even if body dynamics are reduced.
+- Preserve the 96-channel muscle activation API so exact, fast, and realtime backends can share tooling.
+- Prefer stable low-dimensional body state over high-dimensional particle state for realtime.
+- Make every approximation explicit in the run manifest.
+- Validate in rollout, not only one-step prediction.
+- Optimize only after the validation harness exists.
+- Keep training, validation, and hidden test runs separated from the beginning.
+- Do not let rendering frame rate hide simulation error.
+- Do not use larger hardware before profiling proves the model is compute-bound or memory-bound.
+
+## Target Hardware Tiers
+
+### Tier 1 - RTX 4090 Baseline
+
+Use the RTX 4090 as the primary product target:
+
+- 16,384 CUDA cores.
+- 24 GB GDDR6X.
+- 83 TFLOPS shader throughput.
+- Dual NVENC support for video output.
+
+Expected role:
+
+- Realtime inference/runtime target.
+- Local development and validation target.
+- Should be enough for a reduced body model or hybrid learned/mechanistic model.
+
+### Tier 2 - RTX 5090 Or Similar Enthusiast GPU
+
+Use an RTX 5090-class GPU if the 4090 misses realtime due to memory bandwidth or tensor/surrogate inference throughput:
+
+- 21,760 CUDA cores.
+- 32 GB GDDR7.
+- Blackwell architecture.
+
+Expected role:
+
+- Higher-end single-user realtime target.
+- Better fit for larger neural/body surrogate ensembles.
+
+### Tier 3 - RTX PRO 6000 Blackwell Workstation
+
+Use RTX PRO 6000 Blackwell if the bottleneck is memory capacity, long sequences, batched parameter sweeps, or large visualization/training workloads:
+
+- 96 GB GDDR7 with ECC.
+- 1,792 GB/s memory bandwidth.
+- 4x ninth-generation NVENC.
+
+Expected role:
+
+- Workstation-class development, training, and high-quality realtime rendering.
+- Multi-view visualization or many simultaneous worm instances.
+
+### Tier 4 - H200/Hopper Or Data-Center GPU
+
+Use H200-class hardware only if training or very large batched simulation is required:
+
+- 141 GB HBM3e.
+- 4.8 TB/s memory bandwidth.
+
+Expected role:
+
+- Training surrogate models.
+- Large parameter sweeps.
+- Batched exact/reference generation if ported.
+- Not required for a single realtime reduced model unless the design has become too large.
+
+## Non-Goals
+
+- Do not require byte-for-byte equivalence with Sibernetic particle buffers.
+- Do not require a 30,000-step exact particle simulation to finish in 150 ms.
+- Do not hide approximations behind the word "exact".
+- Do not replace the exact simulator plans. Realtime mode depends on exact/reference outputs for validation.
+- Do not use a learned model without mechanistic and behavioral validation.
+- Do not require rendering to be scientific ground truth. Simulation state and behavioral metrics are the ground truth.
+
+## Existing Inputs To Preserve
+
+### Connectome Data
+
+- Source CSV: `herm_full_edgelist_MODIFIED.csv`.
+- Columns: `Source`, `Target`, `Weight`, `Type`.
+- Active c302 reader: `UpdatedSpreadsheetDataReader2`.
+- Active FW/C2 setup:
+  - neurons: `AVBL`, `AVBR`, `DB1..DB7`, `VD1..VD13`, `VB1..VB11`, `DD1..DD6`.
+  - active neuron count: 39.
+  - active muscles: 95 observed body-wall muscles.
+  - output muscle convention: 96 values.
+- Preserve c302 normalization:
+  - remove leading zeroes in neuron names.
+  - convert body-wall muscles into `MDR`, `MVR`, `MVL`, `MDL` names.
+  - chemical `DD*`/`VD*` outputs are `GABA`; other chemical outputs are `Acetylcholine`.
+  - electrical rows become gap junctions.
+- Preserve FW/C2 model rules:
+  - connection filtering.
+  - connection number override `^.+-.+$: 1`.
+  - polarity overrides.
+  - parameter/conductance overrides.
+  - generated input currents.
+
+### Neural Output Convention
+
+- Realtime runtime must emit the same 96 muscle activation channels as the legacy bridge.
+- Preserve order:
+  - 24 `MDR`
+  - 24 `MVR`
+  - 24 `MVL`
+  - 24 `MDL`
+- Preserve compatibility quirks in reference/validation mode:
+  - final `MVR` slot behavior from the legacy `main_sim.py`.
+  - missing `MVL24` handling.
+- Realtime mode may use a cleaned internal representation, but export adapters must map back to the 96-channel legacy convention.
+
+### Body And Environment Rules
+
+Use Sibernetic as the physical reference for:
+
+- Body-wall muscle force direction and timing.
+- One-step neural-to-body latency in exact/reference mode.
+- Worm centerline extraction semantics.
+- Crawling configuration behavior.
+- Carpet/fluid/agar interaction concepts.
+- Membrane and elastic-body constraints.
+- Output mapping in `worm_motion_log.txt`.
+
+Realtime mode may replace particle SPH with a reduced body model, but it must be trained/calibrated/validated against the same reference rules.
+
+## Rule Inventory To Extract
+
+This realtime effort still needs a full rule extraction pass. The difference from exact mode is that the extracted rules become constraints and calibration targets rather than all being reproduced literally.
+
+### c302 Rules
+
+- [ ] Raw connectome CSV schema and hashing.
+- [ ] Neuron-name normalization.
+- [ ] Muscle-name normalization.
+- [ ] Cell inclusion/exclusion for FW.
+- [ ] Muscle inclusion/exclusion for FW.
+- [ ] Chemical/electrical synapse classification.
+- [ ] Excitatory/inhibitory polarity rules.
+- [ ] Connection-number overrides.
+- [ ] Conductance/parameter overrides.
+- [ ] Input current definitions.
+- [ ] Generated population names and ordering.
+- [ ] Generated muscle calcium variables.
+- [ ] Mapping from generated variables to 96 muscle output channels.
+
+### Neural Bridge Rules
+
+- [ ] Timestep unit conversion from seconds to milliseconds.
+- [ ] Calcium-to-activation scaling: `min(1, calcium / 4e-7)`.
+- [ ] Legacy muscle channel order.
+- [ ] MVR/MVL missing-channel quirks.
+- [ ] One-step neural-to-body latency in exact/reference mode.
+- [ ] Muscle activity log formatting.
+
+### Sibernetic Body Rules
+
+- [ ] Particle type semantics.
+- [ ] Muscle id encoding in connections.
+- [ ] Elastic connection force rules.
+- [ ] Muscle-force rules.
+- [ ] Passive elasticity and damping constants.
+- [ ] Boundary and contact handling.
+- [ ] Agar/carpet interaction behavior.
+- [ ] Fluid drag and pressure effects that materially affect crawling.
+- [ ] Body centerline extraction from particles.
+- [ ] Worm-motion log coordinate mapping.
+
+### Output Rules
+
+- [ ] `report.json` fields needed by current tools.
+- [ ] `muscle_activity_buffer.txt` shape and format.
+- [ ] `worm_motion_log.txt` shape and coordinate conventions.
+- [ ] WCON export shape and coordinate conventions.
+- [ ] Render camera defaults and muscle-color semantics.
+- [ ] Video frame rate, resolution, and metadata conventions.
+
+## Realtime Output Contract
+
+Realtime mode must write a manifest that prevents confusion with exact outputs.
+
+Required manifest fields:
+
+- `mode: realtime`.
+- exact reference dataset id.
+- connectome CSV hash.
+- c302 ruleset hash.
+- generated neural model IR hash.
+- body model type.
+- body model parameter hash.
+- residual/surrogate model hash, if used.
+- hardware name.
+- driver version.
+- CUDA version.
+- precision mode.
+- latency summary.
+- validation score summary.
+- unsupported conditions or out-of-distribution warnings.
+
+Required outputs:
+
+- `manifest.json`.
+- `muscle_activity_buffer.txt` or equivalent 96-channel export.
+- `worm_motion_log.txt` compatible export.
+- WCON-compatible export.
+- optional `position_buffer_reduced.*` with reduced body state.
+- optional rendered frames.
+- optional MP4.
+- optional stream metadata.
+
+Do not name reduced-state outputs `position_buffer.txt` unless they are explicitly compatible with the legacy particle format.
+
+## Recommended Realtime Model
+
+Use a hybrid mechanistic plus learned-residual architecture.
+
+### Neural Runtime
+
+Start with a compiled deterministic neural runtime derived from the c302-generated FW/C2 model.
+
+Options, in order:
+
+1. Generate C++/CUDA code from the exact generated c302/LEMS model.
+2. Convert the generated model to a compact graph of ODE/state update equations.
+3. Run the 39-neuron plus muscle-state model in a CUDA kernel or small CUDA Graph.
+4. Add tensor-core acceleration only if the math is reformulated and validation still passes.
+
+Avoid Python/NEURON in realtime mode. Keep it only for reference data generation.
+
+Realtime neural acceptance:
+
+- Produces 96 muscle activations.
+- Matches NEURON/c302 reference within defined tolerances over short and long windows.
+- Preserves phase, amplitude, calcium saturation, and response to current pulses.
+- Runs in less than `0.5 ms` per `150 ms` simulated window after warmup.
+
+### Body Runtime
+
+Do not attempt full Sibernetic SPH in realtime mode unless benchmarks prove it can hit the budget.
+
+Preferred model:
+
+- A reduced centerline/body model with approximately 48-128 longitudinal segments.
+- Segment state includes position, orientation, curvature, velocity, and local environment contact state.
+- Muscle state maps the 96 activation channels onto dorsal/ventral left/right bending forces.
+- Use a Cosserat-rod, mass-spring chain, or finite-segment elastic-body model.
+- Add simple calibrated contact/friction/drag models for crawling.
+- Add a learned residual model to correct systematic differences from Sibernetic.
+
+Why this is the right starting point:
+
+- The visual/behavior outputs are centerline and muscle activity, not every SPH particle.
+- The current Sibernetic config has tens of thousands of particles and expensive neighbor dynamics.
+- Realtime requires reducing state dimensionality while preserving behavior metrics.
+
+Realtime body acceptance:
+
+- Advances `150 ms` simulated time in less than `5 ms` wall time on RTX 4090 after warmup.
+- Preserves bend wavelength, bend amplitude, propagation speed, locomotion speed, and phase relative to muscle activation.
+- Produces a legacy-compatible `worm_motion_log` export.
+
+### Learned Residual Or Surrogate
+
+Use learning to correct the reduced model, not to replace all structure at first.
+
+Recommended residual inputs:
+
+- Current centerline state.
+- Segment velocities.
+- 96 muscle activations.
+- Recent activation history.
+- Contact/environment state.
+- Configuration identifier.
+- Optional latent state from prior frames.
+
+Recommended residual outputs:
+
+- Per-segment force correction.
+- Per-segment curvature correction.
+- Next-window centerline correction.
+- Confidence/uncertainty estimate.
+
+Candidate model families:
+
+- Small temporal convolution network over the body axis.
+- Graph neural network over segment adjacency and muscle-channel attachments.
+- State-space model with CUDA/TensorRT inference.
+- Tiny transformer only if sequence context is clearly needed and latency fits.
+
+Keep model size small enough that inference is not the bottleneck. Prefer a model that runs in under `1 ms` per `150 ms` simulated window on RTX 4090.
+
+## Model Candidate Matrix
+
+Evaluate these body model candidates in order. Do not commit to a learned-only model before the mechanistic baselines are measured.
+
+### Candidate A - 2D Centerline Rod
+
+Description:
+
+- 2D body centerline with curvature, local tangent, and segment velocity.
+- Muscle channels drive dorsal/ventral bending.
+- Contact/friction model handles crawling.
+
+Pros:
+
+- Fastest.
+- Easiest to fit and debug.
+- Good for initial realtime proof.
+
+Cons:
+
+- Cannot capture 3D roll/twist or full body-environment interactions.
+- May miss Sibernetic artifacts from particle/fluid coupling.
+
+Gate:
+
+- Use as first milestone if it matches bend frequency, phase, and centerline error on default crawling.
+
+### Candidate B - 3D Cosserat Rod
+
+Description:
+
+- 3D segment pose and orientation model with bending/twist stiffness.
+- Muscle groups produce torques around the body.
+- Contact model handles ground interaction.
+
+Pros:
+
+- Strong physical structure.
+- Can represent richer body motion than 2D.
+- Still much smaller than SPH particles.
+
+Cons:
+
+- More parameters to fit.
+- Harder contact model.
+
+Gate:
+
+- Use if 2D centerline cannot match held-out trajectories or if visual/streaming requirements need 3D posture.
+
+### Candidate C - Mass-Spring Segment Chain
+
+Description:
+
+- A chain or tube mesh with springs, dampers, and muscle actuation.
+- Similar conceptual lineage to Sibernetic elastic connections, but far fewer nodes.
+
+Pros:
+
+- Easier to map from legacy muscle forces.
+- Straightforward GPU implementation.
+
+Cons:
+
+- Can become unstable without small timesteps.
+- May need many substeps, threatening realtime.
+
+Gate:
+
+- Use if Cosserat model is too hard to fit or if spring semantics map better to Sibernetic fixtures.
+
+### Candidate D - Learned Dynamics Model
+
+Description:
+
+- Model predicts next reduced state from current state and muscle history.
+- Could be graph, temporal convolution, state-space model, or compact transformer.
+
+Pros:
+
+- Potentially fastest and most accurate inside training distribution.
+- Can absorb complex Sibernetic effects.
+
+Cons:
+
+- Weak extrapolation.
+- Harder to trust scientifically.
+- Requires large high-quality reference dataset.
+
+Gate:
+
+- Use only as residual first. Promote to standalone only if it passes hidden perturbation tests and uncertainty checks.
+
+### Candidate E - Multi-Rate Hybrid
+
+Description:
+
+- Neural state updates at a higher rate.
+- Body state updates at a lower rate.
+- Residual correction runs per render frame or per 150 ms window.
+
+Pros:
+
+- Best latency/accuracy tradeoff if neural dynamics need finer time resolution than body dynamics.
+
+Cons:
+
+- Adds phase-alignment complexity.
+
+Gate:
+
+- Use if compiled neural runtime is cheap but body substeps dominate.
+
+## Numerical And Precision Plan
+
+Realtime mode can use lower precision only after validation proves it does not change behavior metrics beyond tolerance.
+
+Initial precision:
+
+- `float32` for neural state.
+- `float32` for body state.
+- `float32` for muscle activations.
+- `float32` for residual model inference.
+
+Allowed after validation:
+
+- TF32 for learned residual matrix operations.
+- FP16/BF16 for residual inference if rollout metrics pass.
+- Mixed precision for rendering-only data.
+
+Not allowed without explicit task:
+
+- FP16 neural dynamics if phase or activation saturation changes.
+- Quantized body dynamics if it destabilizes rollout.
+- Fast-math changes without metric comparison.
+
+Each precision mode must have:
+
+- a manifest field.
+- a benchmark result.
+- a validation scorecard.
+- a release note if user-visible.
+
+## Runtime Architecture
+
+### Process Layout
+
+- `ow-realtime run`
+  - Runs realtime simulation.
+- `ow-realtime validate`
+  - Compares realtime output to exact/reference fixtures.
+- `ow-realtime train`
+  - Trains residual/surrogate models from reference data.
+- `ow-realtime render`
+  - Renders outputs offline.
+- `ow-realtime stream`
+  - Streams live rendered frames.
+
+### Core Runtime Components
+
+- `connectome/`
+  - Exact c302-compatible connectome parser and model builder.
+- `neural/`
+  - Compiled FW/C2 neural runtime.
+  - Legacy NEURON reference adapter.
+- `body/`
+  - Reduced mechanistic body model.
+  - Residual/surrogate model.
+  - Export adapter to legacy motion logs.
+- `cuda/`
+  - CUDA kernels.
+  - CUDA Graphs for fixed update sequences.
+  - Optional TensorRT/CUDA inference path.
+- `render/`
+  - Real-time renderer.
+  - Headless renderer.
+  - NVENC video/stream encoding.
+- `validation/`
+  - Golden fixture comparison.
+  - Behavior metrics.
+  - Latency benchmarks.
+
+### Dataflow
+
+1. Load connectome CSV and c302 FW/C2 rules.
+2. Build neural model IR.
+3. Load realtime body model parameters.
+4. Load optional learned residual weights.
+5. For each realtime window:
+   - advance neural state and produce 96 muscle activations.
+   - map activations to body segments.
+   - advance reduced body dynamics.
+   - apply residual correction.
+   - export centerline/motion state.
+   - render or stream the latest frame.
+6. Periodically emit legacy-compatible outputs for validation and tooling.
+
+## Latency Budget
+
+Hard product target:
+
+- `150 ms` simulated time in `<=150 ms` wall time on RTX 4090.
+
+Engineering target:
+
+- `150 ms` simulated time in `<=25 ms` wall time on RTX 4090, leaving room for UI, streaming, parameter changes, and slower machines.
+
+Suggested per-window budget:
+
+- Neural runtime: `<=0.5 ms`.
+- Body reduced dynamics: `<=5 ms`.
+- Residual/surrogate inference: `<=1 ms`.
+- State export and metrics: `<=1 ms`.
+- Rendering: `<=4 ms` for 60 FPS, optional if headless.
+- Encoding/streaming: `<=8 ms` with NVENC, optional if headless.
+- Scheduler/overhead: `<=5 ms`.
+
+If the design cannot hit `<=25 ms` per 150 ms simulated window on RTX 4090, profile before moving to larger hardware. Larger hardware should not be used to compensate for retaining a particle-level exact model in realtime mode.
+
+## Accuracy Budget
+
+Initial tolerances should be conservative placeholders. They must be revised after the first exact/reference dataset is generated and baseline variability is measured.
+
+Suggested first-pass public validation thresholds:
+
+- Muscle activation normalized RMSE: `<=0.08` over 150 ms windows.
+- Muscle activation phase error: `<=10 degrees` for dominant oscillatory components.
+- Centerline point RMSE: `<=5 percent` of body length over 150 ms windows.
+- Curvature RMSE: `<=10 percent` of reference curvature dynamic range.
+- Bend frequency error: `<=5 percent`.
+- Bend wavelength error: `<=10 percent`.
+- Forward locomotion speed error: `<=10 percent`.
+- Heading error: `<=10 degrees` over 150 ms windows.
+- Long rollout drift: no unphysical self-intersection or exploding curvature over 10 s.
+
+Stricter internal targets:
+
+- Centerline point RMSE: `<=2 percent` of body length.
+- Locomotion speed error: `<=5 percent`.
+- Bend frequency error: `<=2 percent`.
+- Stable rollout for `60 s` with no manual reset.
+
+The validation harness must report the full metric distribution, not only pass/fail.
+
+## Reference Dataset Design
+
+The realtime model will only be as good as the exact/reference coverage. Build the dataset deliberately.
+
+### Dataset Splits
+
+- `train`
+  - Used for fitting body parameters and residual models.
+- `validation`
+  - Used for model selection and hyperparameter tuning.
+- `public_test`
+  - Used in CI and release scorecards.
+- `hidden_test`
+  - Used only before release to catch overfitting.
+
+### Required Scenarios
+
+- Default FW/C2 crawling, `worm_crawl_half_resolution`.
+- No-c302 sine muscle drive.
+- Worm-alone half-resolution.
+- Short default runs of `150 ms`.
+- Medium runs of `1 s`.
+- Long stability runs of `10 s`, `30 s`, and eventually `60 s`.
+
+### Perturbation Scenarios
+
+- Initial posture perturbations:
+  - straight.
+  - shallow bend.
+  - strong bend.
+  - shifted center of mass.
+- Neural perturbations:
+  - AVB stimulation changes.
+  - DB/VB current amplitude changes.
+  - selected neuron silencing.
+  - selected connection scaling.
+- Muscle perturbations:
+  - single muscle group gain changes.
+  - dorsal-only drive.
+  - ventral-only drive.
+  - left/right imbalance.
+- Environment perturbations:
+  - friction coefficient changes.
+  - drag coefficient changes.
+  - agar/carpet parameter changes.
+  - boundary/contact changes.
+- Numerical perturbations:
+  - timestep variations in exact/fast reference where supported.
+  - logstep variations.
+
+### Dataset Artifacts
+
+For each reference run, store:
+
+- `run_manifest.json`.
+- connectome/model hashes.
+- c302 generated artifact hashes.
+- 96-channel muscle activity.
+- centerline and curvature time series.
+- reduced state extraction from particle data.
+- final WCON.
+- selected rendered frames.
+- optional raw particle snapshots at sparse intervals.
+- validation summary for the exact run itself.
+
+### Dataset Size Targets
+
+Milestone dataset:
+
+- 20-50 reference runs.
+- Enough for model architecture decisions.
+
+Prototype dataset:
+
+- 200-500 reference runs.
+- Enough to fit first residual model.
+
+Release dataset:
+
+- 1,000+ reference runs if learned residuals are product-facing.
+- Hidden test coverage across perturbations.
+
+If exact reference generation is too slow, prioritize diversity over duration and use the accelerated exact backend as soon as it exists.
+
+## Calibration Workflow
+
+The realtime model should be calibrated in layers.
+
+### Layer 1 - Muscle Mapping
+
+- [ ] Map 96 muscle channels onto reduced body segments.
+- [ ] Preserve dorsal/ventral and left/right grouping.
+- [ ] Fit per-muscle gain and delay only if reference data proves they are needed.
+- [ ] Keep default gains interpretable and documented.
+
+### Layer 2 - Passive Body Parameters
+
+- [ ] Fit stiffness.
+- [ ] Fit damping.
+- [ ] Fit segment mass or effective inertia.
+- [ ] Fit bending/twist resistance.
+- [ ] Validate passive relaxation from perturbed initial postures.
+
+### Layer 3 - Contact And Environment
+
+- [ ] Fit crawling friction.
+- [ ] Fit normal/contact response.
+- [ ] Fit fluid/drag approximation if swimming is included later.
+- [ ] Validate locomotion speed and heading under varied environment parameters.
+
+### Layer 4 - Active Muscle Dynamics
+
+- [ ] Fit muscle force scale.
+- [ ] Fit activation-to-force nonlinearity.
+- [ ] Fit activation delay if necessary.
+- [ ] Fit saturation behavior.
+- [ ] Validate phase and amplitude of bending waves.
+
+### Layer 5 - Residual Model
+
+- [ ] Train residual only on errors left after mechanistic calibration.
+- [ ] Constrain residual magnitude.
+- [ ] Penalize energy injection and unstable curvature.
+- [ ] Validate long-horizon rollout.
+- [ ] Add uncertainty estimation.
+
+### Layer 6 - Runtime Compression
+
+- [ ] Remove unused model inputs.
+- [ ] Fuse kernels.
+- [ ] Capture CUDA Graphs.
+- [ ] Quantize residual model only if validation passes.
+- [ ] Freeze release artifacts and hashes.
+
+## Realtime Repo Structure
+
+Suggested clean repo layout:
+
+- `data/`
+  - raw connectome and config snapshots.
+  - generated reference manifests.
+  - reduced training datasets.
+- `docs/`
+  - realtime model specification.
+  - validation methodology.
+  - dataset generation guide.
+  - hardware benchmark guide.
+- `src/connectome/`
+  - c302-compatible parser.
+  - model rule application.
+  - generated IR writer.
+- `src/neural/`
+  - generated FW/C2 runtime.
+  - NEURON reference adapter.
+  - muscle activation export.
+- `src/body/`
+  - reduced body models.
+  - contact/friction models.
+  - calibration parameters.
+- `src/residual/`
+  - training-time residual definitions.
+  - runtime residual inference.
+- `src/cuda/`
+  - kernels.
+  - graph capture.
+  - memory management.
+- `src/render/`
+  - mesh generation.
+  - OpenGL/Vulkan interop.
+  - headless render path.
+- `src/video/`
+  - NVENC integration.
+  - MP4 writer.
+  - stream publisher.
+- `src/cli/`
+  - `ow-realtime` commands.
+- `tests/`
+  - parser tests.
+  - neural equivalence tests.
+  - body calibration tests.
+  - rollout validation tests.
+  - latency tests.
+- `benchmarks/`
+  - repeatable benchmark scripts and expected report schema.
+- `models/`
+  - frozen release model weights and metadata.
+
+## Benchmark Protocol
+
+Every benchmark must specify:
+
+- GPU model.
+- GPU memory.
+- driver version.
+- CUDA version.
+- CPU model.
+- host memory.
+- OS.
+- power mode.
+- precision mode.
+- display/render mode.
+- run duration.
+- warmup count.
+- number of repeated windows.
+
+Required benchmark cases:
+
+- Headless neural-only.
+- Headless body-only.
+- Headless residual-only.
+- Headless full simulation.
+- Full simulation plus 60 FPS render.
+- Full simulation plus render plus NVENC MP4.
+- Full simulation plus live stream.
+
+Required reported metrics:
+
+- p50 latency.
+- p95 latency.
+- p99 latency.
+- max latency.
+- simulated ms per wall ms.
+- GPU memory peak.
+- GPU utilization.
+- CPU utilization.
+- host/device sync count.
+- frames dropped.
+- stream latency where applicable.
+
+## Implementation Checklist
+
+### Phase 0 - Define Realtime Contract
+
+- [ ] Create an explicit `realtime` mode in docs and CLI separate from `exact` and `fast`.
+- [ ] Define what "uses the existing connectome data and simulator rules" means:
+  - same raw connectome source.
+  - same c302 FW/C2 transformation rules.
+  - same 96 muscle activation convention.
+  - same body/muscle/environment reference behavior.
+  - behavior-level, not particle-buffer-level, equivalence.
+- [ ] Define output artifacts:
+  - realtime run manifest.
+  - 96-channel muscle activity.
+  - centerline/motion log.
+  - WCON-compatible export.
+  - rendered frames/video/stream.
+- [ ] Define pass/fail behavior metrics and tolerances before implementation.
+
+#### Phase 0 Implementation Progress
+
+- [x] Vendor the c302 `herm_full_edgelist_MODIFIED.csv` snapshot into the WilliamTheWorm monorepo with source commit, source license, and SHA-256 metadata.
+- [x] Add a dependency-free Rust parser for `UpdatedSpreadsheetDataReader2`-compatible CSV parsing, neuron-name normalization, body-wall muscle-name normalization, synapse type/class mapping, FW active-neuron constants, and 96-channel Sibernetic muscle bridge ordering.
+- [x] Add CLI inspection commands for connectome summary and legacy muscle-channel order.
+- [x] Document the first source audit, architecture, and extracted c302/Sibernetic business logic in `./documentation`.
+- [x] Port the full FW/C2 parameter override, polarity override, connection-number override, and generated input-current inventory into a structured Rust neural-model IR.
+- [x] Add machine-readable realtime manifest schema definitions and tests before implementing `ow-realtime run`.
+
+### Phase 1 - Reference Dataset Generation
+
+- [ ] Use the exact legacy or accelerated simulator to generate training and validation data.
+- [ ] Generate baseline fixtures:
+  - default FW/C2 crawling.
+  - no-c302 sine-wave muscle drive.
+  - worm-alone configuration.
+  - short `150 ms`, medium `1 s`, and longer `10 s` runs.
+- [ ] Generate perturbation fixtures:
+  - different initial postures.
+  - varied stimulation current amplitudes.
+  - varied stimulation timings.
+  - selected neuron silencing or altered connection weights.
+  - changed friction/contact parameters where supported.
+- [ ] Export per-run data:
+  - connectome/model manifest.
+  - neural state where available.
+  - 96 muscle activations.
+  - worm centerline/motion logs.
+  - selected particle-derived body summaries.
+  - final WCON.
+  - render frames for visual reference.
+- [ ] Split fixtures into train, validation, and hidden test sets.
+- [ ] Version datasets with hashes and simulator commit metadata.
+
+### Phase 2 - c302-Compatible Neural Model IR
+
+- [ ] Parse c302 FW/C2 generated artifacts into a clean neural model IR.
+- [ ] Include:
+  - cells/populations.
+  - gap junctions.
+  - continuous projections.
+  - analog synapses.
+  - current inputs.
+  - muscle calcium variables.
+  - parameters/conductances after overrides.
+- [ ] Validate IR against c302-generated NeuroML/LEMS/HOC hashes.
+- [ ] Generate a compact CUDA/C++ neural runtime from the IR.
+- [ ] Compare generated runtime to NEURON reference over:
+  - first 150 ms.
+  - first 1 s.
+  - perturbed current inputs.
+  - selected neuron/muscle traces.
+- [ ] Export 96-channel muscle activations in legacy order.
+- [ ] Add a fallback path that reads precomputed muscle activation traces for body-model development.
+
+#### Phase 2 Implementation Progress
+
+- [x] Vendor the generated c302 `examples/c302_C2_FW.net.nml` artifact into the WilliamTheWorm monorepo with source commit and SHA-256 metadata.
+- [x] Add a dependency-free Rust extractor for the generated FW/C2 NeuroML network id, population inventory, pulse-generator inventory, input-list inventory, and projection counts.
+- [x] Add `ow-realtime inspect-neural-ir` for generated NeuroML IR summary auditing.
+- [x] Lower electrical and continuous projection members into a Rust IR with source/target populations, cell paths, synapse/component ids, and weights.
+- [ ] Extend projection IR with segment/fraction metadata if future c302 artifacts use multi-segment cells.
+- [ ] Lower projection records into solver-ready equations with resolved conductances and analog synapse parameters.
+
+### Phase 3 - Reduced Body Model
+
+- [ ] Define the realtime body state:
+  - 48, 64, 96, or 128 longitudinal segments.
+  - 2D and 3D variants.
+  - position, orientation, curvature, velocity, angular velocity.
+  - contact/friction state.
+  - segment-to-muscle attachment map.
+- [ ] Derive the 96-channel muscle-to-segment mapping from the Sibernetic muscle order and body-wall naming convention.
+- [ ] Implement a mechanistic model:
+  - Cosserat rod, finite-segment elastic body, or mass-spring chain.
+  - dorsal/ventral and left/right muscle forces.
+  - passive elasticity.
+  - damping.
+  - ground/contact/friction model for crawling.
+  - optional fluid drag model.
+- [ ] Fit physical parameters against Sibernetic reference outputs.
+- [ ] Validate:
+  - bend amplitude.
+  - bend frequency.
+  - wavelength.
+  - phase propagation.
+  - centerline trajectory.
+  - locomotion speed.
+  - response to perturbations.
+- [ ] Implement CUDA kernels for the reduced body update.
+- [ ] Use CUDA Graphs for fixed-window execution.
+- [ ] Benchmark on RTX 4090.
+
+### Phase 4 - Residual/Surrogate Model
+
+- [ ] Train a residual model only after the mechanistic model has measurable baseline error.
+- [ ] Start with a small graph or temporal convolution model over body segments.
+- [ ] Inputs:
+  - recent centerline states.
+  - recent muscle activations.
+  - reduced model predicted next state.
+  - environment/contact state.
+- [ ] Outputs:
+  - correction to curvature, pose, or per-segment force.
+  - uncertainty/confidence.
+- [ ] Train with losses for:
+  - pointwise centerline error.
+  - curvature error.
+  - phase error.
+  - locomotion velocity error.
+  - smoothness/physical plausibility.
+  - long-horizon rollout stability.
+- [ ] Export inference through TensorRT, CUDA kernels, or a minimal custom runtime.
+- [ ] Verify inference latency under `1 ms` per `150 ms` simulated window on RTX 4090.
+- [ ] Add uncertainty gating:
+  - warn when outside training distribution.
+  - optionally fall back to mechanistic-only mode.
+
+### Phase 5 - Realtime CUDA Runtime
+
+- [ ] Keep all realtime state GPU-resident.
+- [ ] Use persistent buffers for:
+  - neural state.
+  - 96-channel muscle activations.
+  - body segment state.
+  - residual model activations.
+  - render buffers.
+- [ ] Use CUDA Graphs for the fixed update sequence.
+- [ ] Avoid CPU synchronization in the hot path.
+- [ ] Add asynchronous telemetry copies at low frequency.
+- [ ] Implement a fixed-window update API:
+  - `step_window(150_ms)`.
+  - `step_frame(16.667_ms)` for rendering.
+  - `step_interactive(dt)` for UI-driven stepping.
+- [ ] Support deterministic replay with fixed seeds and recorded inputs.
+- [ ] Add profiler hooks:
+  - CUDA events.
+  - Nsight Systems markers.
+  - per-component timing.
+  - p50/p95/p99 latency.
+- [ ] Optimize only after correctness and behavior metrics are in place.
+
+### Phase 6 - Realtime Rendering And Streaming
+
+- [ ] Render from the reduced body state, not from legacy SPH particles.
+- [ ] Build a visual worm mesh driven by the segment centerline and muscle activations.
+- [ ] Preserve visual semantics:
+  - dorsal/ventral muscle activity coloring.
+  - body bending.
+  - ground/contact visualization.
+  - optional ghost/reference overlay.
+- [ ] Add render modes:
+  - scientific centerline.
+  - full worm mesh.
+  - muscle heatmap.
+  - debug forces/contact.
+- [ ] Use CUDA/OpenGL or CUDA/Vulkan interop for low-latency rendering.
+- [ ] Add headless rendering for CI.
+- [ ] Add NVENC encoding for MP4 and live stream.
+- [ ] Target:
+  - 60 FPS minimum.
+  - 120 FPS optional.
+  - under `50 ms` glass-to-glass latency for local stream after simulation state is available.
+- [ ] Keep simulation determinism independent of renderer frame drops.
+
+### Phase 7 - Validation Metrics
+
+- [ ] Compare realtime outputs to exact/reference outputs at behavior level.
+- [ ] Required metrics:
+  - 96-channel muscle activation RMSE and phase error.
+  - centerline point RMSE.
+  - curvature RMSE.
+  - bend frequency error.
+  - bend wavelength error.
+  - locomotion speed error.
+  - heading/path error.
+  - left/right and dorsal/ventral phase consistency.
+  - long-horizon rollout stability.
+- [ ] Validate over:
+  - 150 ms windows.
+  - 1 s windows.
+  - 10 s windows.
+  - perturbed inputs.
+  - held-out hidden fixtures.
+- [ ] Add visual validation:
+  - fixed-camera frame comparisons.
+  - overlay videos against reference centerlines.
+  - muscle heatmap comparisons.
+- [ ] Add a realtime scorecard per build:
+  - accuracy metrics.
+  - p50/p95/p99 latency.
+  - GPU memory.
+  - render FPS.
+  - encode FPS.
+  - hardware used.
+
+### Phase 8 - Hardware Escalation Rules
+
+- [ ] Start with RTX 4090 as the required benchmark target.
+- [ ] Escalate to RTX 5090 only if:
+  - model is validated.
+  - bottleneck is GPU compute or memory bandwidth.
+  - code is already free of avoidable CPU synchronization.
+- [ ] Escalate to RTX PRO 6000 if:
+  - memory capacity limits model size, batch size, or visualization quality.
+  - ECC/workstation reliability is required.
+  - multiple simultaneous worm instances are a product requirement.
+- [ ] Use H200/B200-class hardware only for:
+  - surrogate training.
+  - large reference generation.
+  - batched simulation services.
+  - multi-tenant deployment.
+- [ ] Do not escalate hardware to preserve exact 30,000-step SPH in realtime mode. Change the model instead.
+
+### Phase 9 - Product Acceptance
+
+- [ ] On RTX 4090, after warmup, run `150 ms` simulated time in `<=150 ms` wall time.
+- [ ] Preferred: run `150 ms` simulated time in `<=25 ms` wall time headless.
+- [ ] Rendering path sustains 60 FPS while simulation runs.
+- [ ] Stream path sustains 60 FPS with bounded latency.
+- [ ] Realtime outputs pass all behavior metrics on public validation fixtures.
+- [ ] Realtime outputs pass hidden fixture validation before release.
+- [ ] CLI and manifest clearly label the run as `realtime`, not `exact`.
+- [ ] Documentation explains where realtime approximates Sibernetic/c302 and where it preserves rules exactly.
+
+## Risks
+
+- If the neural dynamics cannot be compiled from c302/LEMS cleanly, realtime mode may need precomputed or simplified neural activations at first.
+- If the body behavior depends on high-dimensional SPH details more than expected, a reduced model may need a larger learned residual or more reference data.
+- If perturbation generalization is poor, realtime mode may be suitable for visualization and demos before it is suitable for scientific experiments.
+- If validation metrics are too loose, the model may look correct while failing biologically meaningful behavior.
+- If validation metrics are too strict, the project may accidentally recreate the exact simulator and miss realtime.
+
+## Key Design Decision
+
+The realtime simulator should be a validated behavioral simulator, not a faster clone of every Sibernetic particle update. The exact simulator remains the source of truth. Realtime mode earns trust by consuming the same connectome and model rules, then proving that its neural, muscle, centerline, locomotion, and visual outputs stay within explicit tolerances against the exact reference.
