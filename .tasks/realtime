@@ -925,6 +925,10 @@ Required reported metrics:
 - [ ] Split fixtures into train, validation, and hidden test sets.
 - [ ] Version datasets with hashes and simulator commit metadata.
 
+#### Phase 1 Implementation Progress
+
+- [x] Add `ow-realtime dataset-manifest` to recursively fingerprint emitted run directories with train/validation/hidden split metadata, simulator id, simulator commit, vendored source hashes, and per-artifact SHA-256 records.
+
 ### Phase 2 - c302-Compatible Neural Model IR
 
 - [ ] Parse c302 FW/C2 generated artifacts into a clean neural model IR.
