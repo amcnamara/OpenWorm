@@ -1107,6 +1107,7 @@ Required reported metrics:
 - [x] Add `ow-realtime benchmark-render` to report dependency-free host PPM render FPS for centerline, body, muscle heatmap, debug-drive, and contact-debug modes.
 - [x] Add `ow-realtime export-mesh` to write dependency-free OBJ/MTL reduced-body mesh frames with per-segment muscle-activity materials.
 - [x] Add `render_metadata.json` to headless PPM render outputs with frame format, resolution, timestamp-derived nominal FPS, camera bounds policy, and legacy muscle-color semantics.
+- [x] Add `ow-realtime inspect-render-metadata` to validate and summarize render sidecar camera, color, frame cadence, resolution, loaded-input, and video placeholder conventions.
 
 ### Phase 7 - Validation Metrics
 
