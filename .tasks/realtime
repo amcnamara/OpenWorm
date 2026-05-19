@@ -1098,20 +1098,20 @@ Required reported metrics:
 
 ### Phase 6 - Realtime Rendering And Streaming
 
-- [ ] Render from the reduced body state, not from legacy SPH particles.
-- [ ] Build a visual worm mesh driven by the segment centerline and muscle activations.
+- [x] Render from the reduced body state, not from legacy SPH particles.
+- [x] Build a visual worm mesh driven by the segment centerline and muscle activations.
 - [ ] Preserve visual semantics:
   - dorsal/ventral muscle activity coloring.
   - body bending.
   - ground/contact visualization.
   - optional ghost/reference overlay.
-- [ ] Add render modes:
+- [x] Add render modes:
   - scientific centerline.
   - full worm mesh.
   - muscle heatmap.
   - debug forces/contact.
 - [ ] Use CUDA/OpenGL or CUDA/Vulkan interop for low-latency rendering.
-- [ ] Add headless rendering for CI.
+- [x] Add headless rendering for CI.
 - [ ] Add NVENC encoding for MP4 and live stream.
 - [ ] Target:
   - 60 FPS minimum.
@@ -1133,6 +1133,7 @@ Required reported metrics:
 - [x] Add `render_metadata.json` to headless PPM render outputs with frame format, resolution, timestamp-derived nominal FPS, camera bounds policy, and legacy muscle-color semantics.
 - [x] Add `ow-realtime inspect-render-metadata` to validate and summarize render sidecar camera, color, frame cadence, resolution, loaded-input, and video placeholder conventions.
 - [x] Add `ow-realtime inspect-sibernetic-video-output` to distinguish legacy Sibernetic interactive GLUT visualization and measured FPS from the current headless render metadata video placeholder fields.
+- [x] Add `ow-realtime inspect-render-pipeline` to audit reduced-state render sources, unsupported legacy SPH particle rendering, available headless PPM modes, OBJ/MTL mesh export, reference overlays, no renderer feedback into simulation, and pending GPU interop/video/streaming work.
 
 ### Phase 7 - Validation Metrics
 
