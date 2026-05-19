@@ -1115,6 +1115,7 @@ Required reported metrics:
 - [x] Add first-pass discrete centerline `curvature_rmse_reference_range` validation against the initial curvature accuracy threshold.
 - [x] Add first-pass centerline-curvature `bend_frequency_relative_error` and `bend_wavelength_relative_error` metrics against the initial bend accuracy thresholds.
 - [x] Add first-pass centroid trajectory validation for `locomotion_speed_relative_error` and `heading_error_degrees`.
+- [x] Add first-pass long-horizon `rollout_stability_violation_count` validation for self-intersection, body-length drift, and curvature explosion.
 
 ### Phase 8 - Hardware Escalation Rules
 
