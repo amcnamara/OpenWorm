@@ -947,7 +947,7 @@ Required reported metrics:
 - [x] Add a dependency-free Rust extractor for the generated FW/C2 NeuroML network id, population inventory, pulse-generator inventory, input-list inventory, and projection counts.
 - [x] Add `ow-realtime inspect-neural-ir` for generated NeuroML IR summary auditing.
 - [x] Lower electrical and continuous projection members into a Rust IR with source/target populations, cell paths, synapse/component ids, and weights.
-- [ ] Extend projection IR with segment/fraction metadata if future c302 artifacts use multi-segment cells.
+- [x] Extend projection IR with segment/fraction metadata if future c302 artifacts use multi-segment cells.
 - [x] Lower projection records into solver-ready equations with resolved conductances and analog synapse parameters.
 
 ### Phase 3 - Reduced Body Model
