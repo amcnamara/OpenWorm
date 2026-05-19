@@ -265,7 +265,7 @@ This realtime effort still needs a full rule extraction pass. The difference fro
 - [x] Elastic connection force rules.
 - [x] Muscle-force rules.
 - [x] Passive elasticity and damping constants.
-- [ ] Boundary and contact handling.
+- [x] Boundary and contact handling.
 - [ ] Agar/carpet interaction behavior.
 - [ ] Fluid drag and pressure effects that materially affect crawling.
 - [x] Body centerline extraction from particles.
@@ -905,6 +905,7 @@ Required reported metrics:
 - [x] Add `ow-realtime inspect-sibernetic-elastic-forces` to audit the passive elastic connection force formula, scaled separation/distance rules, zero-distance behavior, worm-shell versus other-elastic branch factors, and legacy longitudinal-index branch behavior.
 - [x] Add `ow-realtime inspect-sibernetic-muscle-forces` to audit the muscle-fiber force formula, muscle-id and activation gates, scaled direction rule, `900.0 * 1.0e-13 / mass` coefficient, no-rest-length behavior, and cross-longitudinal branch factor.
 - [x] Add `ow-realtime inspect-sibernetic-constants` to audit Sibernetic compiled passive constants, derived `simulationScale` and `beta`, viscosity damping default, elasticity coefficient, PCISPH iteration default, and config `timestep=` override behavior.
+- [x] Add `ow-realtime inspect-sibernetic-boundary` to audit Sibernetic stationary boundary particles, boundary-normal storage in velocity lanes, `max(0, (r0 - distance) / r0)` contact weights, position correction, tangential collision velocity correction, and `0.99` collision epsilon.
 - [x] Add `ow-realtime inspect-worm-motion-log` to audit exact/reference Sibernetic worm-motion time calculation, elastic-particle type filtering, encoded longitudinal centerline bucket averaging, particle-axis coordinate mapping, `simulationScale * 1000` scaling, row sections, centerline index range, and parser round trip.
 - [x] Document the first source audit, architecture, and extracted c302/Sibernetic business logic in `./documentation`.
 - [x] Port the full FW/C2 parameter override, polarity override, connection-number override, and generated input-current inventory into a structured Rust neural-model IR.
