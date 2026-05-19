@@ -999,6 +999,7 @@ Required reported metrics:
 - [x] Add explicit reduced centerline export as `position_buffer_reduced.txt`, keeping it separate from legacy Sibernetic `position_buffer.txt`.
 - [x] Add explicit segment orientation quaternions to the reduced body state and update them from tangent during body steps.
 - [x] Wire the generated muscle bridge, sample 96-channel drive, uncalibrated reduced body step, and output serializers into a deterministic realtime smoke run.
+- [x] Add `body_debug_log.txt` to realtime run outputs with per-frame reduced segment state, contact, curvature, and accumulated muscle-drive telemetry.
 
 ### Phase 4 - Residual/Surrogate Model
 
