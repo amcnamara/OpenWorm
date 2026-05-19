@@ -1102,7 +1102,7 @@ Required reported metrics:
 
 - [x] Render from the reduced body state, not from legacy SPH particles.
 - [x] Build a visual worm mesh driven by the segment centerline and muscle activations.
-- [ ] Preserve visual semantics:
+- [x] Preserve visual semantics:
   - dorsal/ventral muscle activity coloring.
   - body bending.
   - ground/contact visualization.
@@ -1137,6 +1137,7 @@ Required reported metrics:
 - [x] Add `ow-realtime inspect-sibernetic-video-output` to distinguish legacy Sibernetic interactive GLUT visualization and measured FPS from the current headless render metadata video placeholder fields.
 - [x] Add `ow-realtime inspect-render-pipeline` to audit reduced-state render sources, unsupported legacy SPH particle rendering, available headless PPM modes, OBJ/MTL mesh export, reference overlays, no renderer feedback into simulation, and pending GPU interop/video/streaming work.
 - [x] Add `ow-realtime render --frame-offset/--frame-stride` deterministic frame selection so the renderer can drop recorded frames without changing simulation artifacts; `render_metadata.json` records the source frame count and selected cadence.
+- [x] Add body-mode dorsal/ventral side stripes, render metadata side-color semantics, and `ow-realtime inspect-visual-semantics` to audit body bending, legacy muscle-side coloring, contact-debug markers, and ghost/reference overlays.
 
 ### Phase 7 - Validation Metrics
 
