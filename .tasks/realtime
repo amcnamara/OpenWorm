@@ -255,7 +255,7 @@ This realtime effort still needs a full rule extraction pass. The difference fro
 - [x] Calcium-to-activation scaling: `min(1, calcium / 4e-7)`.
 - [x] Legacy muscle channel order.
 - [x] MVR/MVL missing-channel quirks.
-- [ ] One-step neural-to-body latency in exact/reference mode.
+- [x] One-step neural-to-body latency in exact/reference mode.
 - [x] Muscle activity log formatting.
 
 ### Sibernetic Body Rules
@@ -899,7 +899,7 @@ Required reported metrics:
 - [x] Add `ow-realtime inspect-fw-inclusion` to audit FW active-cell inclusion, inactive neuron count, generated body-wall muscle inclusion, and the expected missing legacy `MVL24`.
 - [x] Add `ow-realtime inspect-fw-populations` to audit generated FW/C2 population names, parser-preserved ordering, population-order hash, and the expected missing legacy `MVL24`.
 - [x] Add `ow-realtime inspect-fw-c2-rules` to audit every FW/C2 excluded connection, polarity override, connection-number override, conductance/parameter override, and generated input-current row.
-- [x] Add `ow-realtime inspect-neural-bridge` to audit `--dt-ms` millisecond stepping, simulated-second export timestamps, `muscle_activity_buffer.txt` row shape, parser round trip, and the still-unimplemented exact/reference one-step latency.
+- [x] Add `ow-realtime inspect-neural-bridge` to audit `--dt-ms` millisecond stepping, simulated-second export timestamps, `muscle_activity_buffer.txt` row shape, parser round trip, and one-step delayed neural-to-body body-drive semantics.
 - [x] Document the first source audit, architecture, and extracted c302/Sibernetic business logic in `./documentation`.
 - [x] Port the full FW/C2 parameter override, polarity override, connection-number override, and generated input-current inventory into a structured Rust neural-model IR.
 - [x] Add machine-readable realtime manifest schema definitions and tests before implementing `ow-realtime run`.
