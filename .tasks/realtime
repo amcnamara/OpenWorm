@@ -1099,6 +1099,10 @@ Required reported metrics:
   - warn when outside training distribution.
   - optionally fall back to mechanistic-only mode.
 
+#### Phase 4 Implementation Progress
+
+- [x] Add dependency-free `ow-realtime export-residual-errors` to write `mechanistic_residual_errors_v1` training targets from reference/candidate output pairs while leaving learned residual training and runtime execution disabled pending accepted fixtures.
+
 ### Phase 5 - Realtime CUDA Runtime
 
 - [ ] Keep all realtime state GPU-resident.
