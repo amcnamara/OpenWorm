@@ -761,10 +761,10 @@ The realtime model should be calibrated in layers.
 ### Layer 5 - Residual Model
 
 - [ ] Train residual only on errors left after mechanistic calibration.
-- [ ] Constrain residual magnitude.
-- [ ] Penalize energy injection and unstable curvature.
+- [x] Constrain residual magnitude.
+- [x] Penalize energy injection and unstable curvature.
 - [ ] Validate long-horizon rollout.
-- [ ] Add uncertainty estimation.
+- [x] Add uncertainty estimation.
 
 ### Layer 6 - Runtime Compression
 
@@ -1253,6 +1253,7 @@ Required reported metrics:
 - [x] Add optional `ow-realtime scorecard --render-validation-reference` and `--render-validation-candidate` so build scorecards can include metadata-aware rendered-frame validation metrics.
 - [x] Add `ow-realtime benchmark --muscle-source neural` so host latency reports can time the generated neural smoke runtime path separately from the sample drive.
 - [x] Add `ow-realtime scorecard --benchmark-muscle-source neural` so scorecard latency can target the generated neural smoke runtime path.
+- [x] Add dependency-free `residual_model_v1` manifest inspection and validation gates for residual-only training source, magnitude caps, energy injection, unstable curvature, uncertainty, and long-horizon enablement, while leaving actual residual training and accepted long-horizon reference rollouts pending.
 - [x] Add dependency-free `ow-realtime perturb-muscle-activity` trace generation for dorsal/ventral, left/right, and quadrant gain sweeps before replay validation.
 - [x] Add dependency-free `ow-realtime validate-render` PPM frame-directory comparison for fixed-camera visual validation of rendered centerline, body, and muscle-heatmap outputs.
 - [x] Add optional `ow-realtime scorecard --render-input` host PPM render benchmarking so build scorecards can report headless render FPS.
