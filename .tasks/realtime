@@ -1126,6 +1126,7 @@ Required reported metrics:
 - [x] Add a generated `WtwNeuralRuntimeFixedWindowGraph` init/launch/free helper for the neural-only fixed-window CUDA Graph exec, surface `graph_exec_status` through device validation and audits, and keep full body/render/residual graph execution pending.
 - [x] Add a generated reduced-body CUDA kernel artifact and surface `body_cuda_kernel_status` through runtime-buffer and profiler audits while keeping full neural/body graph integration and hardware validation pending.
 - [x] Add generated `body_runtime_device_smoke.cu` plus `validate-body-cuda-device` to compile/run the reduced-body CUDA launch wrapper against caller-managed segment, drive, and curvature buffers when `nvcc` and CUDA hardware are available, while keeping full neural/body graph integration and target hardware benchmarking pending.
+- [x] Add a generated `WtwBodyRuntimeDeviceWorkspace` init/free helper for persistent reduced-body segment, drive, and curvature-scratch buffers, wire the body device smoke through it, and expose `persistent_workspace_status` while leaving full neural/body graph integration and target hardware benchmarking pending.
 
 ### Phase 6 - Realtime Rendering And Streaming
 
