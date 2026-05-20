@@ -1108,6 +1108,7 @@ Required reported metrics:
 - [x] Add fixed-shape temporal residual input windows to `mechanistic_residual_errors_v1` for recent candidate centerline/curvature state, recent 96-channel muscle activations, recent contact summaries, and candidate next-state features for the small temporal-convolution architecture hint while leaving training/runtime execution pending.
 - [x] Add an explicit residual output contract to `mechanistic_residual_errors_v1` for centerline-pose and curvature correction tensors, per-segment force fixture pending status, and uncertainty/confidence runtime gating while leaving learned residual inference disabled.
 - [x] Add `residual_training_readiness` to `mechanistic_residual_errors_v1` so exports record the measurable-baseline-error gate, failed metric count, residual magnitudes, and remaining trainer/dataset/hidden-test/long-horizon/runtime blockers before learned residual training can start.
+- [x] Add `ow-realtime export-residual-runtime` and `inspect-residual-runtime` to generate and audit a dependency-free minimal custom residual ABI scaffold that returns disabled/no-op mechanistic-only fallback until a trained residual model passes the contract gates.
 
 ### Phase 5 - Realtime CUDA Runtime
 
