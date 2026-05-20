@@ -1118,6 +1118,7 @@ Required reported metrics:
 - [x] Capture the generated 150 ms neural smoke window into one CUDA Graph with ping-pong neural state buffers and surface fixed-window graph step/duration metadata, while leaving body update, render buffers, async telemetry, and real CUDA hardware timing pending.
 - [x] Promote the generated neural fixed-window CUDA Graph capture loop into a reusable `wtw_neural_capture_fixed_window_graph` helper in the emitted CUDA runtime ABI, while leaving body/render graph capture and real hardware profiling pending.
 - [x] Add generated CUDA event timing around the neural fixed-window graph launch and expose `cuda_graph_launch_elapsed_ms`/`cuda_event_timing_status` through the device validator and profiler audit, while leaving full-runtime CUDA events, Nsight markers, and hardware profiling pending.
+- [x] Add optional generated NVTX range scaffolding around the neural fixed-window graph launch and expose `nvtx_marker_status`/`neural_cuda_nvtx_ranges` through the device validator and profiler audit, while leaving full-runtime Nsight Systems marker coverage and hardware profiling pending.
 
 ### Phase 6 - Realtime Rendering And Streaming
 
