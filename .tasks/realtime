@@ -1131,6 +1131,7 @@ Required reported metrics:
 - [x] Add generated CUDA event timing, optional `body_fixed_window_graph_launch` NVTX range scaffolding, and pinned-host async segment telemetry to the body-only fixed-window CUDA Graph smoke/validator while leaving full-runtime neural/body graph integration and target hardware benchmarking pending.
 - [x] Add generated CPU/CUDA 96-channel activation-to-segment-drive bridge entries, persist a body-side muscle activation buffer, and capture the bridge before each body-only CUDA Graph step while leaving neural-output wiring into the body workspace and target hardware benchmarking pending.
 - [x] Add a generated neural/body CUDA runtime smoke artifact that captures a 150-step graph running the neural buffer kernel, device-to-device copying its 96-channel muscle output into the body activation workspace, running the body muscle bridge, and stepping the body while leaving renderer interop, residual execution, target hardware latency, and Sibernetic reference fitting pending.
+- [x] Promote the generated neural/body fixed-window CUDA Graph capture/init/launch/free path into reusable `neural_body_runtime_generated.cuh`/`neural_body_runtime_generated.cu` ABI helpers while leaving renderer interop, residual execution, target hardware latency, and Sibernetic reference fitting pending.
 
 ### Phase 6 - Realtime Rendering And Streaming
 
