@@ -1121,6 +1121,7 @@ Required reported metrics:
 - [x] Add optional generated NVTX range scaffolding around the neural fixed-window graph launch and expose `nvtx_marker_status`/`neural_cuda_nvtx_ranges` through the device validator and profiler audit, while leaving full-runtime Nsight Systems marker coverage and hardware profiling pending.
 - [x] Add generated pinned-host `cudaMemcpyAsync` telemetry readbacks for the neural fixed-window device smoke and expose `async_telemetry_status`/`neural_cuda_async_telemetry_fields` through the device validator and profiler audit, while leaving full-runtime low-frequency async GPU telemetry pending.
 - [x] Add a generated `WtwNeuralRuntimeDeviceWorkspace` init/free helper for persistent neural CUDA tables and ping-pong step buffers, wire the fixed-window device smoke through it, and expose `persistent_workspace_status` through the device validator and audits, while leaving full-runtime body/render/residual persistent buffers pending.
+- [x] Add a generated `WtwNeuralRuntimeFixedWindowGraph` init/launch/free helper for the neural-only fixed-window CUDA Graph exec, surface `graph_exec_status` through device validation and audits, and keep full body/render/residual graph execution pending.
 
 ### Phase 6 - Realtime Rendering And Streaming
 
