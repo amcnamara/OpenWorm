@@ -995,6 +995,7 @@ Required reported metrics:
 - [x] Add `ow-realtime validate-neural-cuda-host --input-dir <dir>` to verify generated neural CUDA artifacts, compile the host smoke harness with a normal C++ compiler, run it, and check deterministic initial FW/C2 output while leaving `nvcc`, GPU residency, and NEURON equivalence pending.
 - [x] Add `ow-realtime validate-neural-cuda-nvcc --input-dir <dir>` to verify generated neural CUDA artifacts and compile `neural_runtime_generated.cu` with `nvcc` when the CUDA toolkit is available, including an explicit missing-tool skip mode for non-CUDA developer machines.
 - [x] Extend generated neural CUDA artifacts with a typed `WtwNeuralRuntimeDeviceBuffers` ABI, step I/O byte-size helper, buffer-kernel entry, and launch wrapper so GPU residency work has an inspectable caller-managed device-buffer contract while runtime allocation, CUDA Graph capture, and measured GPU execution remain pending.
+- [x] Add generated `neural_runtime_device_smoke.cu` plus `ow-realtime validate-neural-cuda-device --input-dir <dir>` to compile/run a CUDA Runtime API smoke harness that allocates generated neural tables and one-step state buffers on device memory, launches the generated buffer ABI, and copies outputs back when `nvcc` and CUDA hardware are available.
 - [x] Extend `ow-realtime inspect-body-map` with summary counts proving the 96 legacy muscle channels map onto 48 reduced segments while preserving dorsal/ventral, left/right, and quadrant grouping.
 
 ### Phase 3 - Reduced Body Model
@@ -1110,6 +1111,7 @@ Required reported metrics:
 - [x] Add first-pass host per-component timing to `ow-realtime benchmark` and scorecard benchmark sections for muscle-source generation, reduced-body update, and output serialization, while leaving CUDA event and Nsight marker profiler hooks pending.
 - [x] Add `ow-realtime benchmark --trace-output <file>` and `inspect-profiler-hooks` to export dependency-free host component spans while leaving CUDA event, Nsight marker, async GPU telemetry, and persistent-buffer work pending.
 - [x] Add `ow-realtime inspect-runtime-buffers` to derive a planned persistent-buffer contract from the current neural IR, 96-channel muscle window, reduced-body state, debug telemetry, and render buffers while leaving GPU residency and CUDA Graph capture pending.
+- [x] Add a generated neural CUDA Runtime API smoke harness and `validate-neural-cuda-device` gate for one-step device allocation/launch/readback of neural tables and state buffers, while leaving the full fixed-window GPU-resident runtime, body update, render buffers, CUDA Graph capture, and async telemetry pending.
 
 ### Phase 6 - Realtime Rendering And Streaming
 
