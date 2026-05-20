@@ -949,6 +949,7 @@ Required reported metrics:
 - [x] Add `ow-realtime dataset-manifest` to recursively fingerprint emitted run directories with train/validation/hidden split metadata, simulator id, simulator commit, vendored source hashes, and per-artifact SHA-256 records.
 - [x] Add `ow-realtime run --muscle-source neural --neural-input-gain` and `--neural-silence` to generate unvalidated neural smoke perturbation traces for current-amplitude and selected-population silencing fixture coverage.
 - [x] Add canonical c302 FW/C2 ruleset, parsed generated neural IR, and generated LEMS hashes to realtime run manifests, dataset manifests, and inspection commands so model-rule metadata is no longer a placeholder or raw-source proxy.
+- [x] Add `ow-realtime validate-neural-reference --reference <muscle_activity_buffer.txt>` to compare the Rust table-driven c302 FW/C2 neural runtime against supplied 96-channel reference traces with muscle RMSE and phase metrics while leaving HOC/NEURON fixture generation and long-duration reference comparisons pending.
 
 ### Phase 2 - c302-Compatible Neural Model IR
 
