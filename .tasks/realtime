@@ -1199,7 +1199,7 @@ Required reported metrics:
   - model is validated.
   - bottleneck is GPU compute or memory bandwidth.
   - code is already free of avoidable CPU synchronization.
-- [ ] Escalate to RTX PRO 6000 if:
+- [x] Escalate to RTX PRO 6000 if:
   - memory capacity limits model size, batch size, or visualization quality.
   - ECC/workstation reliability is required.
   - multiple simultaneous worm instances are a product requirement.
@@ -1214,6 +1214,7 @@ Required reported metrics:
 
 - [x] Add a scorecard `hardware_escalation` gate that keeps RTX 4090 as the baseline target, blocks larger-GPU escalation until validation and profiling evidence exist, and rejects exact-SPH preservation as a realtime escalation reason.
 - [x] Add `ow-realtime inspect-hardware-escalation` to audit the RTX 4090 baseline, 150 ms and 60 FPS targets, scorecard hardware fields, RTX 5090 eligibility gates, RTX PRO 6000 memory-capacity review path, exact-SPH rejection, and pending hardware benchmark status.
+- [x] Add explicit RTX PRO 6000 scorecard inputs for model-size, batch-size, or visualization-quality memory limits, workstation reliability requirements, and multiple simultaneous worm instances.
 
 ### Phase 9 - Product Acceptance
 
