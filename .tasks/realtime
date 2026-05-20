@@ -748,7 +748,7 @@ The realtime model should be calibrated in layers.
 - [x] Fit crawling friction.
 - [x] Fit normal/contact response.
 - [ ] Fit fluid/drag approximation if swimming is included later.
-- [ ] Validate locomotion speed and heading under varied environment parameters.
+- [x] Validate locomotion speed and heading under varied environment parameters.
 
 ### Layer 4 - Active Muscle Dynamics
 
@@ -1067,6 +1067,7 @@ Required reported metrics:
 - [x] Add `ow-realtime validate-passive-relaxation` to run deterministic zero-drive straight, shallow/strong bend, stretched-spacing, and shifted-center perturbation checks with curvature/spacing decay metrics while leaving exact Sibernetic passive relaxation reference matching pending.
 - [x] Add `ow-realtime calibrate-body --contact-friction-scale` so crawling friction can be fitted explicitly through `contact_friction_per_s` while leaving varied-environment locomotion validation pending.
 - [x] Add `ow-realtime calibrate-body --contact-band-scale` so reduced normal/contact response can be fitted explicitly through `contact_band` while leaving exact Sibernetic contact response matching pending.
+- [x] Add `ow-realtime validate-environment-response` to run deterministic sample-drive baseline, low/high contact-friction, wide contact-band, and high-fluid-drag cases with locomotion speed and heading metrics while leaving exact Sibernetic environment matching and swimming-fluid validation pending.
 
 ### Phase 4 - Residual/Surrogate Model
 
