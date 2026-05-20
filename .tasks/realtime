@@ -1102,6 +1102,7 @@ Required reported metrics:
 #### Phase 4 Implementation Progress
 
 - [x] Add dependency-free `ow-realtime export-residual-errors` to write `mechanistic_residual_errors_v1` training targets from reference/candidate output pairs while leaving learned residual training and runtime execution disabled pending accepted fixtures.
+- [x] Extend `mechanistic_residual_errors_v1` with explicit `reference_minus_candidate` centerline and curvature target arrays normalized by reference body length and curvature range, so residual training inputs have concrete correction targets while runtime residual execution remains disabled.
 
 ### Phase 5 - Realtime CUDA Runtime
 
