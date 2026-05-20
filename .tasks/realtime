@@ -1184,6 +1184,7 @@ Required reported metrics:
 - [x] Add generated `wtw_neural_body_pack_render_vertices_to_graphics_async` to map caller-registered CUDA graphics resources and pack shader-facing eight-float render vertices directly into mapped interop buffers while leaving live presentation, Vulkan registration, NVENC, latency proof, and Sibernetic reference fitting pending.
 - [x] Add generated CUDA/Vulkan opaque-FD external-memory render-buffer import, shader-vertex pack, and free helpers so caller-owned Vulkan buffers can be mapped as CUDA device pointers while leaving live presentation, Vulkan barrier wiring, NVENC, latency proof, and Sibernetic reference fitting pending.
 - [x] Add generated CUDA/Vulkan timeline-semaphore import, wait, signal, and free helpers so caller-owned Vulkan presentation code can synchronize CUDA render-buffer writes on the fixed-window stream while leaving live presentation, NVENC, latency proof, and Sibernetic reference fitting pending.
+- [x] Add a generated synchronized CUDA/Vulkan render-pack helper that waits on a caller timeline value, writes shader-facing render vertices into mapped Vulkan external memory, and signals completion on the fixed-window stream while leaving live presentation, Vulkan barrier wiring, NVENC, latency proof, and Sibernetic reference fitting pending.
 
 ### Phase 7 - Validation Metrics
 
