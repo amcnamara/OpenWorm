@@ -745,7 +745,7 @@ The realtime model should be calibrated in layers.
 
 ### Layer 3 - Contact And Environment
 
-- [ ] Fit crawling friction.
+- [x] Fit crawling friction.
 - [ ] Fit normal/contact response.
 - [ ] Fit fluid/drag approximation if swimming is included later.
 - [ ] Validate locomotion speed and heading under varied environment parameters.
@@ -1065,6 +1065,7 @@ Required reported metrics:
 - [x] Add `ow-realtime calibrate-body --stiffness-scale` and `--bending-resistance-scale` so axial spacing stiffness and curvature-coupling resistance can be fitted independently while keeping `--elasticity-scale` as a coarse shared multiplier.
 - [x] Add `ow-realtime calibrate-body --passive-decay-scale`, `--velocity-damping-scale`, and `--fluid-drag-scale` so passive curvature decay, velocity damping, and fluid drag can be fitted independently while keeping `--damping-scale` as a coarse shared multiplier.
 - [x] Add `ow-realtime validate-passive-relaxation` to run deterministic zero-drive straight, shallow/strong bend, stretched-spacing, and shifted-center perturbation checks with curvature/spacing decay metrics while leaving exact Sibernetic passive relaxation reference matching pending.
+- [x] Add `ow-realtime calibrate-body --contact-friction-scale` so crawling friction can be fitted explicitly through `contact_friction_per_s` while leaving normal/contact response and varied-environment locomotion validation pending.
 
 ### Phase 4 - Residual/Surrogate Model
 
