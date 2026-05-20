@@ -1187,6 +1187,7 @@ Required reported metrics:
 - [x] Add a generated synchronized CUDA/Vulkan render-pack helper that waits on a caller timeline value, writes shader-facing render vertices into mapped Vulkan external memory, and signals completion on the fixed-window stream while leaving live presentation, Vulkan barrier wiring, NVENC, latency proof, and Sibernetic reference fitting pending.
 - [x] Add `ow-realtime encode-render` to run or dry-run `ffmpeg` `h264_nvenc` MP4 and live-FLV commands from rendered PPM frame sequences, emit `encode_metadata.json`, and advertise the encoder path in stream metadata while leaving target-hardware stream FPS and latency proof pending.
 - [x] Extend `encode_metadata.json` with contiguous frame-sequence validation, frame count, expected stream duration, measured `encode_wall_ms`/`encode_fps` fields for real ffmpeg runs, and explicit `not_measured_glass_to_glass` latency status while leaving RTX 4090 stream acceptance pending.
+- [x] Add `ow-realtime scorecard --encode-metadata` ingestion so measured `encode_fps` from `encode_metadata.json` can feed `hardware.encode_fps` and `hardware_escalation` unless a manual `--encode-fps` override is supplied, while leaving glass-to-glass latency proof pending.
 
 ### Phase 7 - Validation Metrics
 
