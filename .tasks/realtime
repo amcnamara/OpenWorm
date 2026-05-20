@@ -1106,6 +1106,7 @@ Required reported metrics:
 - [x] Add candidate residual input features to `mechanistic_residual_errors_v1`: normalized candidate centerline/curvature state, full 96-channel muscle activations, dorsal/ventral/left/right means, and optional reduced-body contact summaries from `body_debug_log.txt`, while leaving model training pending.
 - [x] Add diagnostic `training_loss_terms` to `mechanistic_residual_errors_v1` for pointwise centerline error, curvature error, phase, locomotion speed, temporal smoothness, residual magnitude, and rollout-stability/long-horizon coverage while leaving learned residual optimization pending.
 - [x] Add fixed-shape temporal residual input windows to `mechanistic_residual_errors_v1` for recent candidate centerline/curvature state, recent 96-channel muscle activations, recent contact summaries, and candidate next-state features for the small temporal-convolution architecture hint while leaving training/runtime execution pending.
+- [x] Add an explicit residual output contract to `mechanistic_residual_errors_v1` for centerline-pose and curvature correction tensors, per-segment force fixture pending status, and uncertainty/confidence runtime gating while leaving learned residual inference disabled.
 
 ### Phase 5 - Realtime CUDA Runtime
 
