@@ -1104,6 +1104,7 @@ Required reported metrics:
 - [x] Add dependency-free `ow-realtime export-residual-errors` to write `mechanistic_residual_errors_v1` training targets from reference/candidate output pairs while leaving learned residual training and runtime execution disabled pending accepted fixtures.
 - [x] Extend `mechanistic_residual_errors_v1` with explicit `reference_minus_candidate` centerline and curvature target arrays normalized by reference body length and curvature range, so residual training inputs have concrete correction targets while runtime residual execution remains disabled.
 - [x] Add candidate residual input features to `mechanistic_residual_errors_v1`: normalized candidate centerline/curvature state, full 96-channel muscle activations, dorsal/ventral/left/right means, and optional reduced-body contact summaries from `body_debug_log.txt`, while leaving model training pending.
+- [x] Add diagnostic `training_loss_terms` to `mechanistic_residual_errors_v1` for pointwise centerline error, curvature error, phase, locomotion speed, temporal smoothness, residual magnitude, and rollout-stability/long-horizon coverage while leaving learned residual optimization pending.
 
 ### Phase 5 - Realtime CUDA Runtime
 
