@@ -1208,6 +1208,7 @@ Required reported metrics:
 - [x] Extend `encode_metadata.json` with contiguous frame-sequence validation, frame count, expected stream duration, measured `encode_wall_ms`/`encode_fps` fields for real ffmpeg runs, and explicit `not_measured_glass_to_glass` latency status while leaving RTX 4090 stream acceptance pending.
 - [x] Add `ow-realtime scorecard --encode-metadata` ingestion so measured `encode_fps` from `encode_metadata.json` can feed `hardware.encode_fps` and `hardware_escalation` unless a manual `--encode-fps` override is supplied, while leaving glass-to-glass latency proof pending.
 - [x] Add `encode-render --measured-glass-to-glass-ms` and `scorecard --stream-latency-ms` ingestion so measured local stream latency can feed the 50 ms hardware gate while leaving live presentation and RTX 4090 acceptance pending.
+- [x] Add `ow-realtime validate-stream-acceptance --encode-metadata` so completed live-stream metadata must prove at least 60 FPS and at most 50 ms measured glass-to-glass latency before stream acceptance can pass, while leaving live presentation and RTX 4090 proof pending.
 
 ### Phase 7 - Validation Metrics
 
