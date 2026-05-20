@@ -986,6 +986,7 @@ Required reported metrics:
 - [x] Add dependency-free SHA-256 audit coverage for the vendored connectome CSV, generated FW/C2 NeuroML artifact, and generated FW/C2 LEMS artifact; no committed `c302_C2_FW` HOC fixture was present in the pinned c302 source tree yet.
 - [x] Extend `ow-realtime inspect-neural-ir` with explicit Phase 2 coverage flags for cells/populations, gap junctions, continuous projections, analog synapses, current inputs, muscle calcium variables, resolved conductances, vendored LEMS hash coverage, and pending HOC, NEURON, and CUDA/C++ work.
 - [x] Add `ow-realtime validate-neural-ir` as a machine-readable generated-artifact gate for vendored NeuroML/LEMS hashes, parsed IR counts, resolved projection invariants, LEMS simulation metadata, and the legacy 96-channel muscle bridge while leaving HOC and NEURON trace validation pending.
+- [x] Add `ow-realtime export-neural-runtime --output <file>` to lower the parsed FW/C2 IR into compact dependency-free runtime tables for population indices, pulse inputs, resolved electrical and continuous couplings, runtime constants, and the legacy 96-channel muscle-output bridge.
 - [x] Extend `ow-realtime inspect-body-map` with summary counts proving the 96 legacy muscle channels map onto 48 reduced segments while preserving dorsal/ventral, left/right, and quadrant grouping.
 
 ### Phase 3 - Reduced Body Model
