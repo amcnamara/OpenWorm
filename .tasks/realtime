@@ -738,7 +738,7 @@ The realtime model should be calibrated in layers.
 ### Layer 2 - Passive Body Parameters
 
 - [x] Fit stiffness.
-- [ ] Fit damping.
+- [x] Fit damping.
 - [x] Fit segment mass or effective inertia.
 - [x] Fit bending/twist resistance.
 - [ ] Validate passive relaxation from perturbed initial postures.
@@ -1063,6 +1063,7 @@ Required reported metrics:
 - [x] Add `ow-realtime calibrate-body --best-candidate-output` so the selected grid candidate can be emitted as a normal realtime output directory for immediate validation, rendering, or dataset-manifest handoff.
 - [x] Add `ow-realtime calibrate-body --inertia-scale` so the grid can fit effective segment inertia by inversely scaling `curvature_velocity_gain` independently from force/curvature gain.
 - [x] Add `ow-realtime calibrate-body --stiffness-scale` and `--bending-resistance-scale` so axial spacing stiffness and curvature-coupling resistance can be fitted independently while keeping `--elasticity-scale` as a coarse shared multiplier.
+- [x] Add `ow-realtime calibrate-body --passive-decay-scale`, `--velocity-damping-scale`, and `--fluid-drag-scale` so passive curvature decay, velocity damping, and fluid drag can be fitted independently while keeping `--damping-scale` as a coarse shared multiplier.
 
 ### Phase 4 - Residual/Surrogate Model
 
