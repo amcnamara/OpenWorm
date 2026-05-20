@@ -1037,6 +1037,7 @@ Required reported metrics:
 - [x] Add per-segment muscle-drive accumulation from 96-channel activation frames into dorsal/ventral and left/right drive fields.
 - [x] Add an uncalibrated deterministic Euler body step that maps segment muscle drives into curvature, lateral velocity, position, passive decay, and contact-friction effects.
 - [x] Add generated `export-body-cuda-runtime`/`inspect-body-cuda-runtime` artifacts for the current reduced 48-segment body Euler equations, including body segment/drive/parameter ABI structs, CUDA curvature snapshot, per-segment step, spacing-relaxation/tangent-orientation refresh kernels, and a launch wrapper while leaving `nvcc`, GPU execution, fixed-window graph capture, and Sibernetic reference fit pending.
+- [x] Add generated `body_runtime_host_smoke.cpp`, `validate-body-cuda-host`, and `validate-body-cuda-nvcc` gates for the reduced-body CUDA artifact so CPU-mirror host compilation/runs and CUDA compiler checks are explicit while leaving GPU execution and Sibernetic reference fit pending.
 - [x] Add dependency-free runtime serializers for `manifest.json`, `muscle_activity_buffer.txt`, `worm_motion_log.txt`, and `worm_motion_log.wcon`, plus `ow-realtime inspect-output-sample`.
 - [x] Add explicit reduced centerline export as `position_buffer_reduced.txt`, keeping it separate from legacy Sibernetic `position_buffer.txt`.
 - [x] Add explicit segment orientation quaternions to the reduced body state and update them from tangent during body steps.
