@@ -989,6 +989,7 @@ Required reported metrics:
 - [x] Add `ow-realtime export-neural-runtime --output <file>` to lower the parsed FW/C2 IR into compact dependency-free runtime tables for population indices, pulse inputs, resolved electrical and continuous couplings, runtime constants, and the legacy 96-channel muscle-output bridge.
 - [x] Add `ow-realtime inspect-neural-runtime-tables --input <file>` to parse exported compact runtime tables back, validate section counts and generated-IR hash metadata, and report artifact hashes for future kernel-generation inputs.
 - [x] Add a dependency-free table-driven neural runtime constructor plus `ow-realtime inspect-neural-table-step --input <file>` to prove compact runtime tables are executable by the current minimal Rust neural smoke runtime while leaving NEURON equivalence pending.
+- [x] Add `ow-realtime export-neural-cuda-runtime --output-dir <dir>` to emit deterministic generated C/CUDA source, header, and manifest artifacts from the FW/C2 IR for the current table-driven neural equations while leaving CUDA compilation, GPU residency, and NEURON equivalence pending.
 - [x] Extend `ow-realtime inspect-body-map` with summary counts proving the 96 legacy muscle channels map onto 48 reduced segments while preserving dorsal/ventral, left/right, and quadrant grouping.
 
 ### Phase 3 - Reduced Body Model
