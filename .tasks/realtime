@@ -1170,6 +1170,7 @@ Required reported metrics:
 - [x] Add generated `WtwNeuralBodyTelemetryWorkspace` init/free/copy helpers for pinned-host low-frequency telemetry ring buffers that reuse the four-window stride policy while leaving live telemetry consumers, target hardware latency, and Sibernetic reference fitting pending.
 - [x] Add generated `wtw_neural_body_launch_fixed_window_graph_with_telemetry_async` so callers can enqueue the neural/body fixed-window CUDA Graph and stride-gated pinned-host telemetry workspace copy through one nonblocking helper while leaving live telemetry consumers, target hardware latency, and Sibernetic reference fitting pending.
 - [x] Add generated `wtw_neural_body_latest_telemetry_sample` to expose the latest submitted pinned-host telemetry ring-buffer slot after a caller-owned fence while leaving external live telemetry sinks, target hardware latency, and Sibernetic reference fitting pending.
+- [x] Add generated `wtw_neural_body_publish_latest_telemetry_sample` so caller-owned live telemetry callbacks can consume the latest pinned-host sample view after their own fence while leaving concrete sink integrations, target hardware latency, and Sibernetic reference fitting pending.
 
 ### Phase 6 - Realtime Rendering And Streaming
 
