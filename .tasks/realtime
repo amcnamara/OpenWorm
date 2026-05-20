@@ -753,7 +753,7 @@ The realtime model should be calibrated in layers.
 ### Layer 4 - Active Muscle Dynamics
 
 - [x] Fit muscle force scale.
-- [ ] Fit activation-to-force nonlinearity.
+- [x] Fit activation-to-force nonlinearity.
 - [ ] Fit activation delay if necessary.
 - [ ] Fit saturation behavior.
 - [ ] Validate phase and amplitude of bending waves.
@@ -1069,6 +1069,7 @@ Required reported metrics:
 - [x] Add `ow-realtime calibrate-body --contact-band-scale` so reduced normal/contact response can be fitted explicitly through `contact_band` while leaving exact Sibernetic contact response matching pending.
 - [x] Add `ow-realtime validate-environment-response` to run deterministic sample-drive baseline, low/high contact-friction, wide contact-band, and high-fluid-drag cases with locomotion speed and heading metrics while leaving exact Sibernetic environment matching and swimming-fluid validation pending.
 - [x] Add `ow-realtime calibrate-body --muscle-force-scale` so active muscle-force calibration can scale dorsal/ventral and left/right curvature gains independently from effective inertia while leaving nonlinear activation, delay, saturation, and bending-wave validation pending.
+- [x] Add canonical `activation_force_exponent` body-parameter support, `ow-realtime calibrate-body --activation-force-exponent`, and matching CPU/CUDA muscle-bridge shaping so activation-to-force nonlinearity can be fitted while leaving activation delay, saturation, and bending-wave validation pending.
 
 ### Phase 4 - Residual/Surrogate Model
 
