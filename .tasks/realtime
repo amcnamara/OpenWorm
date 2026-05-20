@@ -1153,7 +1153,7 @@ Required reported metrics:
   - debug forces/contact.
 - [ ] Use CUDA/OpenGL or CUDA/Vulkan interop for low-latency rendering.
 - [x] Add headless rendering for CI.
-- [ ] Add NVENC encoding for MP4 and live stream.
+- [x] Add NVENC encoding for MP4 and live stream.
 - [ ] Target:
   - 60 FPS minimum.
   - 120 FPS optional.
@@ -1185,6 +1185,7 @@ Required reported metrics:
 - [x] Add generated CUDA/Vulkan opaque-FD external-memory render-buffer import, shader-vertex pack, and free helpers so caller-owned Vulkan buffers can be mapped as CUDA device pointers while leaving live presentation, Vulkan barrier wiring, NVENC, latency proof, and Sibernetic reference fitting pending.
 - [x] Add generated CUDA/Vulkan timeline-semaphore import, wait, signal, and free helpers so caller-owned Vulkan presentation code can synchronize CUDA render-buffer writes on the fixed-window stream while leaving live presentation, NVENC, latency proof, and Sibernetic reference fitting pending.
 - [x] Add a generated synchronized CUDA/Vulkan render-pack helper that waits on a caller timeline value, writes shader-facing render vertices into mapped Vulkan external memory, and signals completion on the fixed-window stream while leaving live presentation, Vulkan barrier wiring, NVENC, latency proof, and Sibernetic reference fitting pending.
+- [x] Add `ow-realtime encode-render` to run or dry-run `ffmpeg` `h264_nvenc` MP4 and live-FLV commands from rendered PPM frame sequences, emit `encode_metadata.json`, and advertise the encoder path in stream metadata while leaving target-hardware stream FPS and latency proof pending.
 
 ### Phase 7 - Validation Metrics
 
