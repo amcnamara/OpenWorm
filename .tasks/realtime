@@ -1134,6 +1134,7 @@ Required reported metrics:
 - [x] Add `ow-realtime benchmark-render` to report dependency-free host PPM render FPS for centerline, body, muscle heatmap, debug-drive, and contact-debug modes.
 - [x] Add `ow-realtime export-mesh` to write dependency-free OBJ/MTL reduced-body mesh frames with per-segment muscle-activity materials.
 - [x] Add `render_metadata.json` to headless PPM render outputs with frame format, resolution, timestamp-derived nominal FPS, camera bounds policy, and legacy muscle-color semantics.
+- [x] Add `stream_metadata.json` to headless PPM render outputs as an offline streamable-frame manifest with selected frame paths, cadence, target FPS/latency, and explicit MP4/NVENC/live-stream not-implemented status.
 - [x] Add `ow-realtime inspect-render-metadata` to validate and summarize render sidecar camera, color, frame cadence, resolution, loaded-input, and video placeholder conventions.
 - [x] Add `ow-realtime inspect-sibernetic-video-output` to distinguish legacy Sibernetic interactive GLUT visualization and measured FPS from the current headless render metadata video placeholder fields.
 - [x] Add `ow-realtime inspect-render-pipeline` to audit reduced-state render sources, unsupported legacy SPH particle rendering, available headless PPM modes, OBJ/MTL mesh export, reference overlays, no renderer feedback into simulation, and pending GPU interop/video/streaming work.
