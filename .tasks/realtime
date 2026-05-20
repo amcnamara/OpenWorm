@@ -1304,6 +1304,7 @@ Required reported metrics:
 #### Phase 9 Implementation Progress
 
 - [x] Add `ow-realtime inspect-product-acceptance` and `documentation/product-acceptance.md` to audit implemented realtime CLI/manifest/report labels, unsupported-condition labeling, preserved OpenWorm logic, current approximations, and pending RTX 4090, render, stream, public fixture, and hidden fixture release blockers.
+- [x] Add `ow-realtime validate-product-acceptance` to aggregate scorecard, validation-suite, and stream-acceptance artifacts into a Phase 9 release gate while leaving real RTX 4090 hardware evidence and fixture runs pending.
 
 ## Risks
 
