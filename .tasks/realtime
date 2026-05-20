@@ -1182,6 +1182,7 @@ Required reported metrics:
 - [x] Add generated `wtw_neural_body_register_opengl_render_buffer` and `wtw_neural_body_unregister_render_resource` ABI helpers for opt-in CUDA/OpenGL buffer registration and graphics-resource lifetime while leaving live context creation, Vulkan registration, presentation, NVENC, latency proof, and Sibernetic reference fitting pending.
 - [x] Add generated `wtw_neural_body_pack_render_vertices_async` to pack reduced body positions, curvature, contact, and muscle-drive attributes into an eight-float-per-segment CUDA render buffer while leaving live presentation, NVENC, latency proof, and Sibernetic reference fitting pending.
 - [x] Add generated `wtw_neural_body_pack_render_vertices_to_graphics_async` to map caller-registered CUDA graphics resources and pack shader-facing eight-float render vertices directly into mapped interop buffers while leaving live presentation, Vulkan registration, NVENC, latency proof, and Sibernetic reference fitting pending.
+- [x] Add generated CUDA/Vulkan opaque-FD external-memory render-buffer import, shader-vertex pack, and free helpers so caller-owned Vulkan buffers can be mapped as CUDA device pointers while leaving live presentation, Vulkan semaphore/barrier wiring, NVENC, latency proof, and Sibernetic reference fitting pending.
 
 ### Phase 7 - Validation Metrics
 
