@@ -1129,6 +1129,7 @@ Required reported metrics:
 - [x] Add a generated `WtwBodyRuntimeDeviceWorkspace` init/free helper for persistent reduced-body segment, drive, and curvature-scratch buffers, wire the body device smoke through it, and expose `persistent_workspace_status` while leaving full neural/body graph integration and target hardware benchmarking pending.
 - [x] Add a generated `WtwBodyRuntimeFixedWindowGraph` capture/init/launch/free helper for a 150-step body-only CUDA Graph, wire the body device smoke through it, and expose `cuda_graph_status`/`graph_exec_status` while leaving neural/body graph integration and target hardware benchmarking pending.
 - [x] Add generated CUDA event timing, optional `body_fixed_window_graph_launch` NVTX range scaffolding, and pinned-host async segment telemetry to the body-only fixed-window CUDA Graph smoke/validator while leaving full-runtime neural/body graph integration and target hardware benchmarking pending.
+- [x] Add generated CPU/CUDA 96-channel activation-to-segment-drive bridge entries, persist a body-side muscle activation buffer, and capture the bridge before each body-only CUDA Graph step while leaving neural-output wiring into the body workspace and target hardware benchmarking pending.
 
 ### Phase 6 - Realtime Rendering And Streaming
 
