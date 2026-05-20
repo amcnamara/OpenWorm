@@ -1059,6 +1059,7 @@ Required reported metrics:
 - [x] Add `ow-realtime inspect-body-mechanics` to audit the current uncalibrated finite-segment mechanics scaffold: drive-to-curvature muscle-force proxy, passive curvature decay, neighbor elasticity, damping, ground contact/friction, fluid drag, spacing relaxation, parameter hash, and pending Sibernetic reference-fit status.
 - [x] Add dependency-free `ow-realtime calibrate-body --reference <dir>` to replay reference muscle traces across gain/damping/elasticity/contact scale grids and score candidate reduced-body motion with current behavior metrics.
 - [x] Add `ow-realtime calibrate-body --best-parameters-output` so the best finite-scoring grid candidate can be written as canonical `reduced_body_parameters_v5` text with an auditable hash in the calibration report, while leaving exact Sibernetic reference fitting pending.
+- [x] Add canonical `reduced_body_parameters_v5` parsing and `ow-realtime run --body-parameters FILE` so calibration artifacts can be replayed into runs whose emitted `body_parameters.txt` and manifest hash match the selected parameter file.
 
 ### Phase 4 - Residual/Surrogate Model
 
