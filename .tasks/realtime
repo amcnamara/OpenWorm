@@ -756,7 +756,7 @@ The realtime model should be calibrated in layers.
 - [x] Fit activation-to-force nonlinearity.
 - [ ] Fit activation delay if necessary.
 - [x] Fit saturation behavior.
-- [ ] Validate phase and amplitude of bending waves.
+- [x] Validate phase and amplitude of bending waves.
 
 ### Layer 5 - Residual Model
 
@@ -1068,9 +1068,10 @@ Required reported metrics:
 - [x] Add `ow-realtime calibrate-body --contact-friction-scale` so crawling friction can be fitted explicitly through `contact_friction_per_s` while leaving varied-environment locomotion validation pending.
 - [x] Add `ow-realtime calibrate-body --contact-band-scale` so reduced normal/contact response can be fitted explicitly through `contact_band` while leaving exact Sibernetic contact response matching pending.
 - [x] Add `ow-realtime validate-environment-response` to run deterministic sample-drive baseline, low/high contact-friction, wide contact-band, and high-fluid-drag cases with locomotion speed and heading metrics while leaving exact Sibernetic environment matching and swimming-fluid validation pending.
-- [x] Add `ow-realtime calibrate-body --muscle-force-scale` so active muscle-force calibration can scale dorsal/ventral and left/right curvature gains independently from effective inertia while leaving activation delay and bending-wave validation pending.
-- [x] Add canonical `activation_force_exponent` body-parameter support, `ow-realtime calibrate-body --activation-force-exponent`, and matching CPU/CUDA muscle-bridge shaping so activation-to-force nonlinearity can be fitted while leaving activation delay and bending-wave validation pending.
-- [x] Add canonical `activation_force_saturation` body-parameter support, `ow-realtime calibrate-body --activation-force-saturation`, runtime `--body-activation-force-saturation`, and matching CPU/CUDA muscle-bridge caps so active-force saturation can be fitted while leaving activation delay and bending-wave validation pending.
+- [x] Add `ow-realtime calibrate-body --muscle-force-scale` so active muscle-force calibration can scale dorsal/ventral and left/right curvature gains independently from effective inertia while leaving activation delay and exact Sibernetic active-wave phase matching pending.
+- [x] Add canonical `activation_force_exponent` body-parameter support, `ow-realtime calibrate-body --activation-force-exponent`, and matching CPU/CUDA muscle-bridge shaping so activation-to-force nonlinearity can be fitted while leaving activation delay and exact Sibernetic active-wave phase matching pending.
+- [x] Add canonical `activation_force_saturation` body-parameter support, `ow-realtime calibrate-body --activation-force-saturation`, runtime `--body-activation-force-saturation`, and matching CPU/CUDA muscle-bridge caps so active-force saturation can be fitted while leaving activation delay and exact Sibernetic active-wave phase matching pending.
+- [x] Add `ow-realtime validate-bending-wave` to run deterministic sample-drive active-wave checks for curvature amplitudes, drive amplitudes, dorsal/ventral longitudinal peak phase span, and curvature sign changes while leaving activation delay and exact Sibernetic phase matching pending.
 
 ### Phase 4 - Residual/Surrogate Model
 
