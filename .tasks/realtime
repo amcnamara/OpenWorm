@@ -1133,6 +1133,7 @@ Required reported metrics:
 - [x] Add a generated neural/body CUDA runtime smoke artifact that captures a 150-step graph running the neural buffer kernel, device-to-device copying its 96-channel muscle output into the body activation workspace, running the body muscle bridge, and stepping the body while leaving renderer interop, residual execution, target hardware latency, and Sibernetic reference fitting pending.
 - [x] Promote the generated neural/body fixed-window CUDA Graph capture/init/launch/free path into reusable `neural_body_runtime_generated.cuh`/`neural_body_runtime_generated.cu` ABI helpers while leaving renderer interop, residual execution, target hardware latency, and Sibernetic reference fitting pending.
 - [x] Add `validate-neural-body-cuda-nvcc` as a CUDA compiler gate for the reusable neural/body graph ABI source while leaving device execution, renderer interop, residual execution, target hardware latency, and Sibernetic reference fitting pending.
+- [x] Promote the generated neural/body fixed-window async telemetry readback into reusable `wtw_neural_body_copy_fixed_window_telemetry_async` ABI helper while leaving full-runtime low-frequency telemetry policy, renderer interop, residual execution, target hardware latency, and Sibernetic reference fitting pending.
 
 ### Phase 6 - Realtime Rendering And Streaming
 
