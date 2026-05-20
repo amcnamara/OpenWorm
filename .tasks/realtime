@@ -1182,6 +1182,7 @@ Required reported metrics:
 - [x] Add first-pass centroid trajectory validation for `locomotion_speed_relative_error` and `heading_error_degrees`.
 - [x] Add first-pass long-horizon `rollout_stability_violation_count` validation for self-intersection, body-length drift, and curvature explosion.
 - [x] Add `ow-realtime validate --min-duration-ms` to enforce 150 ms, 1 s, and 10 s validation-window gates before reporting metrics.
+- [x] Add dependency-free `ow-realtime validate-suite --cases <file>` to run behavior validation cases and fail the suite unless passing cases cover 150 ms, 1 s, 10 s, perturbed, and hidden fixture categories.
 - [x] Add `ow-realtime scorecard` to combine validation metrics, p50/p95/p99 host benchmark latency, hardware identity, and explicit uncollected GPU/render/encode telemetry fields.
 - [x] Make `ow-realtime validate-render` compare `render_metadata.json` sidecars before pixel metrics so mismatched render mode, source, frame cadence, camera policy, or color semantics fail early.
 - [x] Add optional `ow-realtime scorecard --render-validation-reference` and `--render-validation-candidate` so build scorecards can include metadata-aware rendered-frame validation metrics.
