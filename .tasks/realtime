@@ -1154,6 +1154,7 @@ Required reported metrics:
 - [x] Add generated `wtw_neural_body_should_copy_fixed_window_telemetry` stride policy metadata for low-frequency neural/body telemetry every four fixed windows while leaving full-runtime telemetry consumers, renderer interop, residual execution, target hardware latency, and Sibernetic reference fitting pending.
 - [x] Add generated `wtw_neural_body_copy_render_segments_async` to snapshot reduced body segments into a caller-owned CUDA device render buffer while leaving OpenGL/Vulkan registration, live presentation, residual execution, target hardware latency, and Sibernetic reference fitting pending.
 - [x] Add generated `WtwNeuralBodyRenderWorkspace` init/free helpers for persistent CUDA render segment and shader-vertex buffers, wire the device smoke through them, and expose render workspace status while leaving live presentation, residual execution, target hardware latency, and Sibernetic reference fitting pending.
+- [x] Add generated `wtw_neural_body_update_render_workspace_async` to refresh persistent render segment and shader-vertex buffers together on the fixed-window stream while leaving live presentation, residual execution, target hardware latency, and Sibernetic reference fitting pending.
 
 ### Phase 6 - Realtime Rendering And Streaming
 
