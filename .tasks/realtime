@@ -1134,6 +1134,7 @@ Required reported metrics:
 - [x] Promote the generated neural/body fixed-window CUDA Graph capture/init/launch/free path into reusable `neural_body_runtime_generated.cuh`/`neural_body_runtime_generated.cu` ABI helpers while leaving renderer interop, residual execution, target hardware latency, and Sibernetic reference fitting pending.
 - [x] Add `validate-neural-body-cuda-nvcc` as a CUDA compiler gate for the reusable neural/body graph ABI source while leaving device execution, renderer interop, residual execution, target hardware latency, and Sibernetic reference fitting pending.
 - [x] Promote the generated neural/body fixed-window async telemetry readback into reusable `wtw_neural_body_copy_fixed_window_telemetry_async` ABI helper while leaving full-runtime low-frequency telemetry policy, renderer interop, residual execution, target hardware latency, and Sibernetic reference fitting pending.
+- [x] Add generated `wtw_neural_body_should_copy_fixed_window_telemetry` stride policy metadata for low-frequency neural/body telemetry every four fixed windows while leaving full-runtime telemetry consumers, renderer interop, residual execution, target hardware latency, and Sibernetic reference fitting pending.
 
 ### Phase 6 - Realtime Rendering And Streaming
 
