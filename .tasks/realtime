@@ -1172,6 +1172,7 @@ Required reported metrics:
 - [x] Add generated `wtw_neural_body_latest_telemetry_sample` to expose the latest submitted pinned-host telemetry ring-buffer slot after a caller-owned fence while leaving external live telemetry sinks, target hardware latency, and Sibernetic reference fitting pending.
 - [x] Add generated `wtw_neural_body_publish_latest_telemetry_sample` so caller-owned live telemetry callbacks can consume the latest pinned-host sample view after their own fence while leaving concrete sink integrations, target hardware latency, and Sibernetic reference fitting pending.
 - [x] Add generated `wtw_neural_body_format_latest_telemetry_csv_row` so caller-owned live telemetry sinks can forward the latest pinned-host sample as stable CSV fields without filesystem or third-party dependencies while leaving transport integrations, target hardware latency, and Sibernetic reference fitting pending.
+- [x] Add `ow-realtime stream-telemetry` to validate generated telemetry CSV rows and relay them as dependency-free UDP datagrams with `telemetry_transport_metadata.json` receiver-smoke metadata while leaving in-process live runtime transport wiring, target hardware latency, and Sibernetic reference fitting pending.
 
 ### Phase 6 - Realtime Rendering And Streaming
 
