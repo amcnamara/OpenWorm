@@ -1098,6 +1098,7 @@ Required reported metrics:
 - [x] Add `ow-realtime inspect-update-api` and `documentation/runtime-api.md` to audit the current host fixed-window scaffold: 150 ms windows, 60 FPS frame steps, interactive single-step updates, recorded `muscle_activity_buffer.txt` replay, no-RNG deterministic replay policy, host latency telemetry, renderer-frame-drop independence, and pending CUDA hot-path, persistent-buffer, CUDA Graph, CUDA event, Nsight marker, and async GPU telemetry work.
 - [x] Add first-pass host per-component timing to `ow-realtime benchmark` and scorecard benchmark sections for muscle-source generation, reduced-body update, and output serialization, while leaving CUDA event and Nsight marker profiler hooks pending.
 - [x] Add `ow-realtime benchmark --trace-output <file>` and `inspect-profiler-hooks` to export dependency-free host component spans while leaving CUDA event, Nsight marker, async GPU telemetry, and persistent-buffer work pending.
+- [x] Add `ow-realtime inspect-runtime-buffers` to derive a planned persistent-buffer contract from the current neural IR, 96-channel muscle window, reduced-body state, debug telemetry, and render buffers while leaving GPU residency and CUDA Graph capture pending.
 
 ### Phase 6 - Realtime Rendering And Streaming
 
