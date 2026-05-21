@@ -962,6 +962,7 @@ Required reported metrics:
 - [x] Add `ow-realtime write-openworm-reference-manifest` so curated legacy OpenWorm output directories can receive the `manifest.json` sidecar required by dataset-manifest artifact gates without labeling those exact-reference outputs as realtime runs.
 - [x] Extend `ow-realtime openworm-reference-plan --write-suite-files` to materialize the planned `dataset-manifests.txt` and manifest-backed `validation-suite.tsv` handoff files while leaving actual OpenWorm reference output generation pending.
 - [x] Add `ow-realtime inspect-openworm-reference-output` to preflight curated legacy OpenWorm output directories for report completion, expected artifact hashes, muscle trace parseability, motion-log parseability, and WCON readability before sidecar manifest creation.
+- [x] Add `ow-realtime curate-openworm-reference-output` to copy only expected raw OpenWorm artifacts into planned reference fixture directories, fingerprint the copied files, and report sidecar readiness while leaving actual OpenWorm Docker run generation pending.
 
 ### Phase 2 - c302-Compatible Neural Model IR
 
