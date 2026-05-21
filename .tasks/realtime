@@ -1345,6 +1345,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 release evidence must include a passing `validate-dataset-manifests` suite covering train, validation, hidden, baseline, perturbation, 150 ms, 1 s, 10 s, and required run artifacts.
 - [x] Tighten `validate-product-acceptance` so summary-only validation-suite or dataset-manifest-suite JSON cannot pass without embedded per-case reference/candidate manifest evidence and manifest-entry payloads.
 - [x] Add simulator-role metadata to dataset manifests and validation-suite/product-acceptance gates so release evidence distinguishes exact or accelerated reference fixtures from realtime candidate outputs.
+- [x] Tighten `validate-product-acceptance` so stream-acceptance evidence must retain encode-metadata hashes, completed live-stream identity, measured-latency status, and per-check payloads instead of summary booleans alone.
 
 ## Risks
 
