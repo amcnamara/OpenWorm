@@ -1098,6 +1098,7 @@ Required reported metrics:
 - [x] Add canonical `activation_delay_steps` body-parameter support, `ow-realtime calibrate-body --activation-delay-steps`, runtime `--body-activation-delay-steps`, and host replay delay wiring so global activation delay can be fitted while leaving exact Sibernetic active-wave phase matching pending.
 - [x] Add machine-readable `per_muscle_fit_policy` to `calibrate-body` reports so per-muscle gain and delay fitting stays blocked until exact/reference data proves it is needed.
 - [x] Add `per_muscle_fit_policy.evidence` to `calibrate-body` reports so the best global candidate records lagged per-channel activation/residual correlations while still leaving per-muscle gain and delay fitting blocked until exact Sibernetic data proves a systematic signal.
+- [x] Add `write-body-calibration-suite-template`, `validate-body-calibration-suite`, and OpenWorm plan `body-calibration-suite.tsv` output so Sibernetic body-fit reports have train/validation coverage and hidden-fixture exclusion gates while leaving actual reference fitting pending.
 
 ### Phase 4 - Residual/Surrogate Model
 
