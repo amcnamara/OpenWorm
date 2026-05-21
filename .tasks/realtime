@@ -1343,6 +1343,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard evidence must name RTX 4090 hardware and include nonzero benchmark warmup iterations before preferred p95 latency can satisfy release gating.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard evidence must include a passing generated neural/body CUDA device validation section with graph, event, async telemetry, workspace, and CPU-sync policy status before release gating can pass.
 - [x] Tighten `validate-product-acceptance` so Phase 9 release evidence must include a passing `validate-dataset-manifests` suite covering train, validation, hidden, baseline, perturbation, 150 ms, 1 s, 10 s, and required run artifacts.
+- [x] Tighten `validate-product-acceptance` so summary-only validation-suite or dataset-manifest-suite JSON cannot pass without embedded per-case reference/candidate manifest evidence and manifest-entry payloads.
 
 ## Risks
 
