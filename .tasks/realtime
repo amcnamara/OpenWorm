@@ -1365,6 +1365,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 dataset-manifest-suite entries must retain exact or accelerated reference and realtime candidate role payload values instead of role coverage booleans alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 dataset-manifest-suite entries must retain train/validation/hidden, baseline/perturbation, and 150 ms/1 s/10 s coverage values instead of coverage booleans alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 dataset-manifest-suite entries must retain empty missing-required-artifacts payloads for every manifest entry instead of top-level required-artifacts evidence alone.
+- [x] Tighten `validate-product-acceptance` so Phase 9 dataset-manifest-suite entries must retain valid artifact-set SHA-256 fingerprints for every manifest entry instead of field names alone.
 
 ## Risks
 
