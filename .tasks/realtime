@@ -1362,6 +1362,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 neural/body CUDA device evidence must retain positive population, segment, driven-segment, and workspace byte-count payloads.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard hardware evidence must retain GPU memory, profiled bottleneck, and zero avoidable CPU-sync fields instead of summary hardware-escalation booleans alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite case manifest evidence must retain exact or accelerated reference roles and realtime candidate roles for every reported case.
+- [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite case manifest evidence must retain valid manifest and artifact-set SHA-256 fingerprints for every reported case.
 - [x] Tighten `validate-product-acceptance` so Phase 9 dataset-manifest-suite entries must retain exact or accelerated reference and realtime candidate role payload values instead of role coverage booleans alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 dataset-manifest-suite entries must retain train/validation/hidden, baseline/perturbation, and 150 ms/1 s/10 s coverage values instead of coverage booleans alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 dataset-manifest-suite entries must retain empty missing-required-artifacts payloads for every manifest entry instead of top-level required-artifacts evidence alone.
