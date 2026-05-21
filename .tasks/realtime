@@ -1084,6 +1084,7 @@ Required reported metrics:
 - [x] Add canonical `activation_force_saturation` body-parameter support, `ow-realtime calibrate-body --activation-force-saturation`, runtime `--body-activation-force-saturation`, and matching CPU/CUDA muscle-bridge caps so active-force saturation can be fitted while leaving exact Sibernetic active-wave phase matching pending.
 - [x] Add `ow-realtime validate-bending-wave` to run deterministic sample-drive active-wave checks for curvature amplitudes, drive amplitudes, dorsal/ventral longitudinal peak phase span, and curvature sign changes while leaving exact Sibernetic phase matching pending.
 - [x] Add canonical `activation_delay_steps` body-parameter support, `ow-realtime calibrate-body --activation-delay-steps`, runtime `--body-activation-delay-steps`, and host replay delay wiring so global activation delay can be fitted while leaving exact Sibernetic active-wave phase matching pending.
+- [x] Add machine-readable `per_muscle_fit_policy` to `calibrate-body` reports so per-muscle gain and delay fitting stays blocked until exact/reference data proves it is needed.
 
 ### Phase 4 - Residual/Surrogate Model
 
