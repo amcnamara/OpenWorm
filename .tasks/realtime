@@ -1331,6 +1331,7 @@ Required reported metrics:
 - [x] Add `ow-realtime inspect-product-acceptance` and `documentation/product-acceptance.md` to audit implemented realtime CLI/manifest/report labels, unsupported-condition labeling, preserved OpenWorm logic, current approximations, and pending RTX 4090, render, stream, public fixture, and hidden fixture release blockers.
 - [x] Add `ow-realtime validate-product-acceptance` to aggregate scorecard, validation-suite, and stream-acceptance artifacts into a Phase 9 release gate while leaving real RTX 4090 hardware evidence and fixture runs pending.
 - [x] Add `validate-suite --require-dataset-manifests` so public and hidden fixture validation cases must be backed by fingerprinted dataset manifests before product acceptance can consume the suite artifact.
+- [x] Tighten `validate-product-acceptance` so Phase 9 scorecard evidence must name RTX 4090 hardware and include nonzero benchmark warmup iterations before preferred p95 latency can satisfy release gating.
 
 ## Risks
 
