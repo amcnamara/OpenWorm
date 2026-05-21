@@ -1350,6 +1350,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard evidence must retain the full behavior metric payload instead of relying on a summary pass status alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard benchmark evidence must retain raw latency samples, component latency summaries, and component sample payloads instead of p95 summary fields alone.
 - [x] Tighten `validate-product-acceptance` and scorecard hardware gating so Phase 9 hard realtime evidence must keep p99 latency at or below 200 ms, not just preferred p95 latency.
+- [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite evidence must retain per-case behavior metric payloads instead of public/hidden coverage booleans alone.
 
 ## Risks
 
