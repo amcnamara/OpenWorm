@@ -1357,6 +1357,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite case payloads must retain per-case pass status and null error fields instead of top-level pass status alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite case payloads must retain nonempty reference and candidate run-directory provenance for every reported case.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite case payloads must retain embedded duration, split, and perturbation coverage values instead of top-level coverage booleans alone.
+- [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite case manifest evidence must retain nonempty reference and candidate manifest path payloads for every reported case.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite case manifest evidence must retain nonempty dataset id, simulator id, and simulator commit payloads for every reported case.
 - [x] Tighten `validate-product-acceptance` so Phase 9 dataset-manifest-suite manifest-entry payload counts must match the reported manifest count.
 - [x] Tighten `validate-product-acceptance` so Phase 9 stream-acceptance check payload counts must match the reported check count.
