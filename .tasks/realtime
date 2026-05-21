@@ -1356,6 +1356,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 stream-acceptance check payload counts must match the reported check count.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard behavior and render metric payload counts must match their reported metric counts.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite required behavior metric payload counts must match the reported case count.
+- [x] Tighten `validate-product-acceptance` so Phase 9 scorecard benchmark raw sample and component sample payload counts must match the reported benchmark iterations.
 
 ## Risks
 
