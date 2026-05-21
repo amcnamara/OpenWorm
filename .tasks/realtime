@@ -1358,6 +1358,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite required behavior metric payload counts must match the reported case count.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard benchmark raw sample and component sample payload counts must match the reported benchmark iterations.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard benchmark latency and component latency summaries must retain full timing payloads instead of p95/p99 fields alone.
+- [x] Tighten `validate-product-acceptance` so Phase 9 neural/body CUDA device evidence must retain render, residual, telemetry workspace, telemetry policy, and 96-channel output payloads.
 
 ## Risks
 
