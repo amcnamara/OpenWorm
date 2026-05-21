@@ -1361,6 +1361,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 neural/body CUDA device evidence must retain render, residual, telemetry workspace, telemetry policy, and 96-channel output payloads.
 - [x] Tighten `validate-product-acceptance` so Phase 9 neural/body CUDA device evidence must retain positive population, segment, driven-segment, and workspace byte-count payloads.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard hardware evidence must retain GPU memory, profiled bottleneck, and zero avoidable CPU-sync fields instead of summary hardware-escalation booleans alone.
+- [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite case manifest evidence must retain exact or accelerated reference roles and realtime candidate roles for every reported case.
 
 ## Risks
 
