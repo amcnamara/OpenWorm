@@ -1352,6 +1352,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` and scorecard hardware gating so Phase 9 hard realtime evidence must keep p99 latency at or below 200 ms, not just preferred p95 latency.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite evidence must retain per-case behavior metric payloads instead of public/hidden coverage booleans alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite case, manifest-evidence, and metric payload counts must match the reported case count.
+- [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite case payloads must retain unique nonempty case identifiers for every reported case.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite case payloads must retain per-case pass status and null error fields instead of top-level pass status alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite case payloads must retain nonempty reference and candidate run-directory provenance for every reported case.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite case payloads must retain embedded duration, split, and perturbation coverage values instead of top-level coverage booleans alone.
