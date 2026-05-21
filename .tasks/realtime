@@ -1372,6 +1372,7 @@ Required reported metrics:
 - [x] Add simulator-role metadata to dataset manifests and validation-suite/product-acceptance gates so release evidence distinguishes exact or accelerated reference fixtures from realtime candidate outputs.
 - [x] Tighten `validate-product-acceptance` so stream-acceptance evidence must retain encode-metadata hashes, completed live-stream identity, measured-latency status, and per-check payloads instead of summary booleans alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 stream-acceptance per-check payloads must retain `passed: true` for every emitted stream check instead of top-level stream status alone.
+- [x] Tighten `validate-product-acceptance` so Phase 9 scorecard, validation-suite, neural-reference-suite, and stream-acceptance pass payloads must retain JSON booleans instead of parseable strings.
 - [x] Tighten `validate-product-acceptance` so Phase 9 stream-acceptance per-check payloads must retain unique nonempty check names instead of relying on `check_count` alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 stream-acceptance per-check payloads must retain exactly the required check-name set instead of accepting padded passing check rows.
 - [x] Tighten `validate-product-acceptance` so Phase 9 stream-acceptance per-check payloads must retain nonempty expected and actual evidence strings instead of relying on names and passed booleans alone.
