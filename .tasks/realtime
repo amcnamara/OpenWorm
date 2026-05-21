@@ -958,6 +958,7 @@ Required reported metrics:
 - [x] Add `ow-realtime run --muscle-perturb-group` and `--muscle-perturb-gain` so sample, neural, zero-drive, and replayed-trace runs can emit body-consistent single-group gain/silencing muscle perturbation fixture candidates.
 - [x] Add canonical c302 FW/C2 ruleset, parsed generated neural IR, and generated LEMS hashes to realtime run manifests, dataset manifests, and inspection commands so model-rule metadata is no longer a placeholder or raw-source proxy.
 - [x] Add `ow-realtime validate-neural-reference --reference <muscle_activity_buffer.txt>` to compare the Rust table-driven c302 FW/C2 neural runtime against supplied 96-channel reference traces with muscle RMSE and phase metrics while leaving HOC/NEURON fixture generation and long-duration reference comparisons pending.
+- [x] Add `ow-realtime openworm-reference-plan` to emit a plan-only exact OpenWorm Docker run matrix for FW/C2 and `-noc302` train/validation/hidden fixtures, including paired exact-reference and realtime-candidate manifest, validation, body-calibration, and neural-reference commands while leaving actual reference output generation pending.
 
 ### Phase 2 - c302-Compatible Neural Model IR
 
