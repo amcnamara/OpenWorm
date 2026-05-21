@@ -1404,6 +1404,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 neural-reference-suite case metric rows must retain finite value and threshold payloads instead of relying on names and passed booleans alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 neural-reference-suite case payloads must retain runtime metadata for timestep, neural input gain, silenced populations, frame count, and achieved duration.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard benchmark raw sample and component sample payload counts must match the reported benchmark iterations.
+- [x] Tighten `validate-product-acceptance` so Phase 9 scorecard benchmark raw sample payloads must retain finite nonnegative JSON-number latency values instead of relying on array length alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard benchmark component sample payloads must retain all timed host-stage fields for every reported iteration instead of relying on array length alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard benchmark latency and component latency summaries must retain full timing payloads instead of p95/p99 fields alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard benchmark component latency summaries must retain full timing fields for every timed host stage instead of relying on field names appearing somewhere in the summary.
