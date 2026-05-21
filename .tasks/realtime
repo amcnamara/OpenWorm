@@ -1354,6 +1354,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite case, manifest-evidence, and metric payload counts must match the reported case count.
 - [x] Tighten `validate-product-acceptance` so Phase 9 dataset-manifest-suite manifest-entry payload counts must match the reported manifest count.
 - [x] Tighten `validate-product-acceptance` so Phase 9 stream-acceptance check payload counts must match the reported check count.
+- [x] Tighten `validate-product-acceptance` so Phase 9 scorecard behavior and render metric payload counts must match their reported metric counts.
 
 ## Risks
 
