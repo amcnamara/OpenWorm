@@ -1188,6 +1188,7 @@ Required reported metrics:
 - [x] Add `ow-realtime validate-telemetry-transport` to gate `telemetry_transport_metadata.json` for generated CSV schema, UDP datagram counts, dry-run versus completed-send semantics, and optional completed-send evidence while leaving in-process live runtime transport wiring, target hardware latency, and Sibernetic reference fitting pending.
 - [x] Add scorecard ingestion for `telemetry_transport_metadata.json` so build reports can carry telemetry UDP relay evidence without treating it as a hardware or product-acceptance gate while leaving in-process live runtime transport wiring, target hardware latency, and Sibernetic reference fitting pending.
 - [x] Add `ow-realtime run --telemetry-udp` so host realtime smoke runs can derive low-frequency telemetry CSV rows from generated runtime frames, write `telemetry.csv`, and relay them through the existing UDP metadata path while leaving CUDA hot-path live telemetry transport, target hardware latency, and Sibernetic reference fitting pending.
+- [x] Add `ow-realtime scorecard --neural-body-cuda-device-validation` so build reports can carry generated neural/body CUDA graph, event, async telemetry, workspace, and CPU-sync policy evidence without treating it as product acceptance while leaving RTX 4090 target-hardware proof pending.
 
 ### Phase 6 - Realtime Rendering And Streaming
 
