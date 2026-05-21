@@ -1375,6 +1375,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 stream-acceptance per-check payloads must retain unique nonempty check names instead of relying on `check_count` alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 stream-acceptance per-check payloads must retain exactly the required check-name set instead of accepting padded passing check rows.
 - [x] Tighten `validate-product-acceptance` so Phase 9 stream-acceptance per-check payloads must retain nonempty expected and actual evidence strings instead of relying on names and passed booleans alone.
+- [x] Tighten `validate-product-acceptance` so Phase 9 stream-acceptance evidence must retain a nonempty encode metadata path alongside the encode metadata SHA-256.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard evidence must include a passing metadata-aware rendered-frame validation section with visual error metrics before render output can count toward release acceptance.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard evidence must retain the full behavior metric payload instead of relying on a summary pass status alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard behavior and render metric payloads must retain `passed: true` for every embedded metric row instead of top-level scorecard status alone.
