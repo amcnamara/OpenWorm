@@ -1346,6 +1346,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so summary-only validation-suite or dataset-manifest-suite JSON cannot pass without embedded per-case reference/candidate manifest evidence and manifest-entry payloads.
 - [x] Add simulator-role metadata to dataset manifests and validation-suite/product-acceptance gates so release evidence distinguishes exact or accelerated reference fixtures from realtime candidate outputs.
 - [x] Tighten `validate-product-acceptance` so stream-acceptance evidence must retain encode-metadata hashes, completed live-stream identity, measured-latency status, and per-check payloads instead of summary booleans alone.
+- [x] Tighten `validate-product-acceptance` so Phase 9 scorecard evidence must include a passing metadata-aware rendered-frame validation section with visual error metrics before render output can count toward release acceptance.
 
 ## Risks
 
