@@ -1395,6 +1395,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 stream-acceptance check payload counts must match the reported check count.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard behavior and render metric payload counts must match their reported metric counts.
 - [x] Tighten `validate-product-acceptance` so Phase 9 scorecard behavior and render metric arrays must retain exactly their required metric-name sets instead of accepting padded metric payloads.
+- [x] Tighten `validate-product-acceptance` so Phase 9 scorecard behavior and render metric rows must retain finite value and threshold payloads instead of relying on names and passed booleans alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite required behavior metric payload counts must match the reported case count.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite required behavior metric payloads must retain the complete required metric-name set on every case instead of relying on global string counts.
 - [x] Tighten `validate-product-acceptance` so Phase 9 neural-reference-suite case metric payloads must retain required neural metric names for every case instead of relying on passed booleans alone.
