@@ -770,7 +770,7 @@ The realtime model should be calibrated in layers.
 
 - [x] Remove unused model inputs.
 - [ ] Fuse kernels.
-- [ ] Capture CUDA Graphs.
+- [x] Capture CUDA Graphs.
 - [ ] Quantize residual model only if validation passes.
 - [ ] Freeze release artifacts and hashes.
 
