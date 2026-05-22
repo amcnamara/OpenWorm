@@ -1060,7 +1060,7 @@ Required reported metrics:
   - locomotion speed.
   - response to perturbations.
 - [x] Implement CUDA kernels for the reduced body update.
-- [ ] Use CUDA Graphs for fixed-window execution.
+- [x] Use CUDA Graphs for fixed-window execution.
 - [ ] Benchmark on RTX 4090.
 
 #### Phase 3 Implementation Progress
@@ -1156,26 +1156,26 @@ Required reported metrics:
 ### Phase 5 - Realtime CUDA Runtime
 
 - [ ] Keep all realtime state GPU-resident.
-- [ ] Use persistent buffers for:
+- [x] Use persistent buffers for:
   - neural state.
   - 96-channel muscle activations.
   - body segment state.
   - residual model activations.
   - render buffers.
-- [ ] Use CUDA Graphs for the fixed update sequence.
+- [x] Use CUDA Graphs for the fixed update sequence.
 - [ ] Avoid CPU synchronization in the hot path.
-- [ ] Add asynchronous telemetry copies at low frequency.
+- [x] Add asynchronous telemetry copies at low frequency.
 - [x] Implement a fixed-window update API:
   - `step_window(150_ms)`.
   - `step_frame(16.667_ms)` for rendering.
   - `step_interactive(dt)` for UI-driven stepping.
 - [x] Support deterministic replay with fixed seeds and recorded inputs.
-- [ ] Add profiler hooks:
+- [x] Add profiler hooks:
   - CUDA events.
   - Nsight Systems markers.
   - per-component timing.
   - p50/p95/p99 latency.
-- [ ] Optimize only after correctness and behavior metrics are in place.
+- [x] Optimize only after correctness and behavior metrics are in place.
 
 #### Phase 5 Implementation Progress
 
