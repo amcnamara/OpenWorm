@@ -1380,6 +1380,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 release evidence must include a passing hash-pinned body calibration suite with train/validation coverage and no hidden fit inputs.
 - [x] Tighten `validate-product-acceptance` so Phase 9 body calibration suite case payloads must prove train-fit and validation-check coverage instead of relying on top-level suite booleans alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 body calibration suite case payloads must retain per-case report provenance and report reference-dir matches instead of relying on hash fields alone.
+- [x] Tighten `validate-product-acceptance` so Phase 9 body calibration suite cases must share one selected best body-parameter SHA-256 across train-fit and validation-check evidence instead of allowing per-case parameter cherry-picking.
 - [x] Add simulator-role metadata to dataset manifests and validation-suite/product-acceptance gates so release evidence distinguishes exact or accelerated reference fixtures from realtime candidate outputs.
 - [x] Tighten `validate-product-acceptance` so stream-acceptance evidence must retain encode-metadata hashes, completed live-stream identity, measured-latency status, and per-check payloads instead of summary booleans alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 stream-acceptance per-check payloads must retain `passed: true` for every emitted stream check instead of top-level stream status alone.
