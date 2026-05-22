@@ -1153,6 +1153,7 @@ Required reported metrics:
 - [x] Extend `ow-realtime inspect-residual-model` with line-oriented architecture, temporal-window, input/output, loss, runtime-export, and uncertainty-gating audit fields for the small temporal-convolution residual contract while leaving learned residual training disabled.
 - [x] Add `ow-realtime export-residual-runtime` and `inspect-residual-runtime` to generate and audit a dependency-free minimal custom residual ABI scaffold that returns disabled/no-op mechanistic-only fallback until a trained residual model passes the contract gates.
 - [x] Add `ow-realtime validate-residual-runtime-host` to compile and run the generated minimal custom residual C ABI host smoke, verifying disabled zero-correction, uncertainty, and fallback behavior while leaving learned residual training and target-hardware latency pending.
+- [x] Add `ow-realtime scorecard --residual-runtime-host-validation` ingestion so build reports can carry generated residual C ABI compile/run smoke evidence without treating it as learned residual training or target-hardware latency proof.
 - [x] Add `ow-realtime validate-long-horizon-rollout` so the residual manifest long-horizon gate has a concrete 10 s behavior-metric and rollout-stability report artifact while leaving accepted reference fixture generation and residual training pending.
 
 ### Phase 5 - Realtime CUDA Runtime
