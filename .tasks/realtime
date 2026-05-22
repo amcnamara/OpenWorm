@@ -1150,6 +1150,7 @@ Required reported metrics:
 - [x] Add `residual_input_pruning` to training exports plus matching residual contract and validation-report fields so unused model inputs stay auditable before runtime enablement.
 - [x] Add `residual_model_v1` quantization gates so runtime-enabled residual artifacts cannot use `fp16`, `bf16`, or `int8` inference until quantization validation passes.
 - [x] Add `residual_model_v1` release-freeze gates so runtime-enabled residual artifacts must carry a frozen release artifact-set hash before release.
+- [x] Extend `ow-realtime inspect-residual-model` with line-oriented architecture, temporal-window, input/output, loss, runtime-export, and uncertainty-gating audit fields for the small temporal-convolution residual contract while leaving learned residual training disabled.
 - [x] Add `ow-realtime export-residual-runtime` and `inspect-residual-runtime` to generate and audit a dependency-free minimal custom residual ABI scaffold that returns disabled/no-op mechanistic-only fallback until a trained residual model passes the contract gates.
 - [x] Add `ow-realtime validate-long-horizon-rollout` so the residual manifest long-horizon gate has a concrete 10 s behavior-metric and rollout-stability report artifact while leaving accepted reference fixture generation and residual training pending.
 
