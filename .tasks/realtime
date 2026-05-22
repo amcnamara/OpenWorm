@@ -1441,6 +1441,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 dataset-manifest-suite entries must retain positive artifact-count payloads for every manifest entry instead of relying on artifact-set hashes alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite manifest evidence and dataset-manifest-suite entries must retain artifact counts at or above the required artifact set size instead of positive counts alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite case durations and dataset-manifest-suite manifest durations must be finite unquoted JSON numbers instead of parseable strings.
+- [x] Tighten `validate-product-acceptance` so Phase 9 body-calibration-suite case and report durations must be finite unquoted JSON numbers instead of parseable strings.
 
 ## Risks
 
