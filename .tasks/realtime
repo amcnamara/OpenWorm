@@ -768,7 +768,7 @@ The realtime model should be calibrated in layers.
 
 ### Layer 6 - Runtime Compression
 
-- [ ] Remove unused model inputs.
+- [x] Remove unused model inputs.
 - [ ] Fuse kernels.
 - [ ] Capture CUDA Graphs.
 - [ ] Quantize residual model only if validation passes.
