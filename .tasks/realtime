@@ -942,7 +942,7 @@ Required reported metrics:
   - final WCON.
   - render frames for visual reference.
 - [ ] Split fixtures into train, validation, and hidden test sets.
-- [ ] Version datasets with hashes and simulator commit metadata.
+- [x] Version datasets with hashes and simulator commit metadata.
 
 #### Phase 1 Implementation Progress
 
