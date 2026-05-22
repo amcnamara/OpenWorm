@@ -1453,6 +1453,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite manifest evidence must retain fixture-kind and duration payloads matching each case.
 - [x] Tighten `validate-product-acceptance` so Phase 9 dataset-manifest-suite entries must retain artifact path payloads containing every required run artifact.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite manifest evidence must retain artifact path payloads containing every required run artifact.
+- [x] Tighten `validate-product-acceptance` so optional residual runtime host scorecard evidence must remain a disabled ABI smoke result with pass, fallback, zero-correction, uncertainty, provenance, and hash payloads instead of being usable as learned residual execution proof.
 
 ## Risks
 
