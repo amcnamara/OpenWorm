@@ -1444,6 +1444,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 body-calibration-suite case and report durations must be finite unquoted JSON numbers instead of parseable strings.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation, neural-reference, and body-calibration suite pass/fail counters must match `case_count`.
 - [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite manifest evidence must retain fixture-kind and duration payloads matching each case.
+- [x] Tighten `validate-product-acceptance` so Phase 9 dataset-manifest-suite entries must retain artifact path payloads containing every required run artifact.
 
 ## Risks
 
