@@ -1059,7 +1059,7 @@ Required reported metrics:
   - centerline trajectory.
   - locomotion speed.
   - response to perturbations.
-- [ ] Implement CUDA kernels for the reduced body update.
+- [x] Implement CUDA kernels for the reduced body update.
 - [ ] Use CUDA Graphs for fixed-window execution.
 - [ ] Benchmark on RTX 4090.
 
