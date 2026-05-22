@@ -1439,6 +1439,7 @@ Required reported metrics:
 - [x] Tighten `validate-product-acceptance` so Phase 9 dataset-manifest-suite entries must retain empty missing-required-artifacts payloads for every manifest entry instead of top-level required-artifacts evidence alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 dataset-manifest-suite entries must retain valid artifact-set SHA-256 fingerprints for every manifest entry instead of field names alone.
 - [x] Tighten `validate-product-acceptance` so Phase 9 dataset-manifest-suite entries must retain positive artifact-count payloads for every manifest entry instead of relying on artifact-set hashes alone.
+- [x] Tighten `validate-product-acceptance` so Phase 9 validation-suite manifest evidence and dataset-manifest-suite entries must retain artifact counts at or above the required artifact set size instead of positive counts alone.
 
 ## Risks
 
